@@ -6,6 +6,14 @@ import { Divider, Drawer, Theme } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 
 import { Profile, SidebarNav } from './components';
+import { connect } from 'react-redux';
+import { RootState } from '../../../../store';
+
+const mapStateToProps = (state: RootState) => {
+  return {
+      user: state.user
+  }
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
   drawer: {
@@ -37,8 +45,8 @@ const Sidebar = (props: any) => {
 
   const pages = [
     {
-      title: 'Dashboard',
-      href: '/dashboard',
+      title: 'Feed',
+      href: '/feed',
       icon: <DashboardIcon />
     }
   ];
@@ -52,10 +60,9 @@ const Sidebar = (props: any) => {
       variant={variant}
     >
       <div
-        {...rest}
         className={clsx(classes.root, className)}
       >
-        <Profile />
+        <Profile userName={props.user.displayName} avatar={props.user.profilePicture} />
         <Divider className={classes.divider} />
         <SidebarNav
           className={classes.nav}
@@ -73,4 +80,8 @@ Sidebar.propTypes = {
   variant: PropTypes.string.isRequired
 };
 
-export default Sidebar;
+const SidebarContainer = connect(
+  mapStateToProps
+)(Sidebar)
+
+export default SidebarContainer;

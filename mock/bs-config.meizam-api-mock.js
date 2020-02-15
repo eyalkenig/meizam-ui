@@ -10,18 +10,23 @@ app.post('/Group/LoadUserPrediction', (req, res) => {
   console.log(req.body)
   const status = 200
   const response = {
-    'groups': [
+    id: 123,
+    displayName: 'Oded Menashe',
+    profilePicture: 'https://graph.facebook.com/1362300300/picture?type=large',
+    groups: [
       {
-        id: 12,
-        displayName: 'first group',
+        groupId: 12,
+        displayName: 'המיזם',
         position: 43,
-        total: 55
+        points: 112,
+        totalMembers: 55
       },
       {
-        id: 125,
-        displayName: 'second group',
-        position: 1,
-        total: 4
+        groupId: 125,
+        displayName: 'Yotpo',
+        position: 2,
+        points: 101,
+        totalMembers: 11
       }
     ]
   }

@@ -1,10 +1,9 @@
 import React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar, Theme } from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import MoneyIcon from '@material-ui/icons/Money';
+import { UserGroupBadge } from '../../types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,29 +25,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 32,
     width: 32
   },
-  difference: {
-    marginTop: theme.spacing(2),
-    display: 'flex',
-    alignItems: 'center'
+  inline: {
+    display: 'inline'
   },
-  differenceIcon: {
-    color: theme.palette.error.dark
-  },
-  differenceValue: {
-    color: theme.palette.error.dark,
-    marginRight: theme.spacing(1)
+  marginRight: {
+    marginRight: '10px'
   }
 }));
 
-const Budget = (props: any) => {
-  const { className, ...rest } = props;
-
+const UserInGroupBadge = (props: UserGroupBadge) => {
   const classes = useStyles();
 
   return (
     <Card
-      {...rest}
-      className={clsx(classes.root, className)}
+      className={classes.root}
     >
       <CardContent>
         <Grid
@@ -62,37 +52,28 @@ const Budget = (props: any) => {
               gutterBottom
               variant="body2"
             >
-              BUDGET
+              {props.displayName}
             </Typography>
-            <Typography variant="h3">$24,000</Typography>
+            <Typography className={`${classes.inline} ${classes.marginRight}`} variant="h3">{props.position}</Typography>
+            <Typography className={classes.inline}>(out of {props.totalMembers})</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
               <MoneyIcon className={classes.icon} />
             </Avatar>
           </Grid>
-        </Grid>
-        <div className={classes.difference}>
-          <ArrowDownwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            12%
-          </Typography>
-          <Typography
-            variant="caption"
-          >
-            Since last month
-          </Typography>
-        </div>
+          </Grid>
       </CardContent>
     </Card>
   );
 };
 
-Budget.propTypes = {
-  className: PropTypes.string
-};
+UserInGroupBadge.propTypes = {
+  groupId: PropTypes.number.isRequired,
+  displayName: PropTypes.string.isRequired,
+  position: PropTypes.number,
+  totalMembers: PropTypes.number,
+  onGroupClicked: PropTypes.func
+}
 
-export default Budget;
+export default UserInGroupBadge;

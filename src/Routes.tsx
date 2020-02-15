@@ -5,7 +5,7 @@ import { RouteWithLayout } from './components';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 
 import {
-  Dashboard as DashboardView,
+  Feed as FeedView,
   NotFound as NotFoundView
 } from './views';
 
@@ -15,12 +15,12 @@ const Routes = () => {
       <Redirect
         exact
         from="/"
-        to="/dashboard"
+        to="/feed"
       />
       <RouteWithLayout
-        component={DashboardView}
+        component={FeedView}
         layout={MainLayout}
-        path="/dashboard"
+        path="/feed"
       />
       <RouteWithLayout
         component={NotFoundView}

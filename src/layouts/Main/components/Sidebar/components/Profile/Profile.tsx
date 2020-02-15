@@ -22,19 +22,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const Profile = (props: any) => {
-  const { className, ...rest } = props;
+  const { className } = props;
 
   const classes = useStyles();
 
   const user = {
-    name: 'Shen Zhi',
-    avatar: '/images/avatars/avatar_11.png',
-    bio: 'Brain Director'
+    name: props.userName,
+    avatar: props.avatar,
+    bio: props.bio
   };
 
   return (
     <div
-      {...rest}
       className={clsx(classes.root, className)}
     >
       <Avatar
@@ -56,7 +55,10 @@ const Profile = (props: any) => {
 };
 
 Profile.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  userName: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  bio: PropTypes.string,
 };
 
 export default Profile;
