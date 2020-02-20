@@ -37,6 +37,47 @@ app.post('/Group/LoadUserPrediction', (req, res) => {
   console.log()
 })
 
+app.post('/Group/LoadTable', (req, res) => {
+  console.log('[POST] /Group/LoadTable')
+  console.log('body:')
+  console.log(req.body)
+  const status = 200
+  const response = {
+    groupId: req.body.g_id,
+    table: [
+      {
+        id: 123,
+        name: 'Ekaterina Tankova',
+        position: 2,
+        points: 100,
+      },
+      {
+        id: 124,
+        name: 'Cao Yu',
+        position: 3,
+        points: 92
+      },
+      {
+        id: 635,
+        name: 'Alexa Richardson',
+        position: 1,
+        points: 107
+      },
+      {
+        id: 765,
+        name: 'Anje Keizer',
+        position: 4,
+        points: 7
+      }
+    ]
+  }
+  console.log('[OK] 200')
+  console.log(response)
+
+  res.status(status).send(response)
+  console.log()
+})
+
 module.exports = {
   port: 3533,
   open: false,

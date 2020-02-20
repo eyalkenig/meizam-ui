@@ -1,7 +1,11 @@
-import { GroupsState, GroupsActionTypes, FETCH_GROUPS_SUCCESS } from "./types";
+import { GroupsState, GroupsActionTypes, FETCH_GROUP_TABLE_SUCCESS, Group } from "./types";
 
 const initialState: GroupsState = {
-    groups: []
+    groups: [],
+    tableView: {
+      selectedGroupId: 0,
+      table: []
+    }
 }
 
 export function groupReducer(
@@ -9,10 +13,13 @@ export function groupReducer(
     action: GroupsActionTypes
   ): GroupsState {
     switch (action.type) {
-      case FETCH_GROUPS_SUCCESS:
+      case FETCH_GROUP_TABLE_SUCCESS:
         return {
           ...state,
-          ...action.payload
+          tableView: {
+            selectedGroupId: action.payload.groupId,
+            table: action.payload.table
+          }
         }
       default:
         return state

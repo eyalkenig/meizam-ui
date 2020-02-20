@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer, Theme } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-
+import TableChartIcon from '@material-ui/icons/TableChart';
 import { Profile, SidebarNav } from './components';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../store';
@@ -48,6 +48,11 @@ const Sidebar = (props: any) => {
       title: 'Feed',
       href: '/feed',
       icon: <DashboardIcon />
+    },
+    {
+      title: 'Group Table',
+      href: '/table',
+      icon: <TableChartIcon />
     }
   ];
 

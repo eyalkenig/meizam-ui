@@ -6,7 +6,8 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 
 import {
   Feed as FeedView,
-  NotFound as NotFoundView
+  NotFound as NotFoundView,
+  GroupTable as GroupTableView
 } from './views';
 
 const Routes = () => {
@@ -21,6 +22,11 @@ const Routes = () => {
         component={FeedView}
         layout={MainLayout}
         path="/feed"
+      />
+      <RouteWithLayout
+        component={GroupTableView}
+        layout={MainLayout}
+        path="/table"
       />
       <RouteWithLayout
         component={NotFoundView}
