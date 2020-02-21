@@ -3,7 +3,11 @@ import axios from 'axios';
 export default class MeizamApi {
   static async FetchUserInfo(): Promise<any> {
     const response = await MeizamApi.get('/User/Info', {})
-    const data = response.data
+    if (response.data.status != 'ok') {
+      console.log(response.data)
+      throw new Error(response.data.error)
+    }
+    const data = response.data.response
     return {
       id: data.ID,
       displayName: data.DisplayName,
@@ -23,9 +27,13 @@ export default class MeizamApi {
 
   static async FetchGroupTable(groupId: number): Promise<any> {
     const response = await MeizamApi.get(`/Group/Table`, { groupId: groupId })
+    if (response.data.status != 'ok') {
+      console.log(response.data)
+      throw new Error(response.data.error)
+    }
     return {
-      groupId: response.data.ID,
-      table: response.data.Users.map((userRow: any) => {
+      groupId: response.data.response.ID,
+      table: response.data.response.Users.map((userRow: any) => {
         return {
           id: userRow.UserId,
           name: userRow.DisplayName,
