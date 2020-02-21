@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const UserInGroupBadge = (props: UserGroupBadge) => {
+const UserInGroupBadge = (props: any) => {
   const classes = useStyles();
 
   return (
     <Card
       className={classes.root}
     >
-      <CardContent>
+      <CardContent onClick={props.onGroupClicked}>
         <Grid
           container
           justify="space-between"

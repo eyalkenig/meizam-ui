@@ -36,38 +36,69 @@ app.post('/Group/LoadUserPrediction', (req, res) => {
   res.status(status).send(response)
   console.log()
 })
-
-app.post('/Group/LoadTable', (req, res) => {
-  console.log('[POST] /Group/LoadTable')
-  console.log('body:')
-  console.log(req.body)
+app.get('/User/Info', (req, res) => {
+  console.log('[GET] /User/Info')
+  console.log('params:')
+  console.log(req.params)
   const status = 200
   const response = {
-    groupId: req.body.g_id,
-    table: [
+    ID: 123,
+    DisplayName: 'Oded Menashe',
+    ProfilePictureUrl: 'https://graph.facebook.com/1362300300/picture?type=large',
+    Groups: [
       {
-        id: 123,
-        name: 'Ekaterina Tankova',
-        position: 2,
-        points: 100,
+        GroupId: 12,
+        DisplayName: 'המיזם',
+        Position: 43,
+        Points: 112,
+        TotalMembers: 55,
+        PictureUrl: null
       },
       {
-        id: 124,
-        name: 'Cao Yu',
-        position: 3,
-        points: 92
+        GroupId: 125,
+        DisplayName: 'Yotpo',
+        Position: 2,
+        Points: 101,
+        TotalMembers: 11,
+        PictureUrl: null
+      }
+    ]
+  }
+  console.log('[OK] 200')
+  console.log(response)
+
+  res.status(status).send(response)
+  console.log()
+})
+app.get('/Group/Table', (req, res) => {
+  console.log('[GET] /Group/Table')
+  console.log('params:')
+  console.log(req.query)
+  const status = 200
+  const response = {
+    ID: req.query.groupId,
+    DisplayName: 'Name of Group',
+    Users: [
+      {
+        UserId: 123,
+        DisplayName: 'Ekaterina Tankova',
+        Position: 2,
+        Points: 102,
+        ProfilePictureUrl: null
       },
       {
-        id: 635,
-        name: 'Alexa Richardson',
-        position: 1,
-        points: 107
+        UserId: 124,
+        DisplayName: 'Cao Yu',
+        Position: 3,
+        Points: 70,
+        ProfilePictureUrl: null
       },
       {
-        id: 765,
-        name: 'Anje Keizer',
-        position: 4,
-        points: 7
+        UserId: 621,
+        DisplayName: 'Alexa Richardson',
+        Position: 1,
+        Points: 120,
+        ProfilePictureUrl: null
       }
     ]
   }

@@ -8,6 +8,8 @@ import {
 import { connect } from 'react-redux';
 import { RootState } from '../../store';
 import { UserGroupState } from '../../store/user/types';
+import { fetchGroupTable } from '../../store/groups/actions';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -20,9 +22,11 @@ const mapStateToProps = (state: RootState) => {
       groups: state.user.groups
   }
 }
-const Feed = (props: any) => {
-  const { groups, onGroupClicked } = props;
+const Feed = (props: any, context: any) => {
+  const { groups, dispatch } = props;
   const classes = useStyles();
+  const history = useHistory();
+
   return (
     <div className={classes.root}>
       <Grid
@@ -44,7 +48,10 @@ const Feed = (props: any) => {
               groupId={group.groupId}
               position={group.position}
               totalMembers={group.totalMembers}
-              onGroupClicked={onGroupClicked} />
+              onGroupClicked={() => {
+                dispatch(fetchGroupTable(group.groupId))
+                history.push("/table")
+              }} />
           </Grid>
       ))}
       </Grid>
@@ -55,7 +62,6 @@ const Feed = (props: any) => {
 Feed.propTypes = {
   onGroupClicked: PropTypes.func
 }
-
 const FeedContainer = connect(
   mapStateToProps
 )(Feed)
