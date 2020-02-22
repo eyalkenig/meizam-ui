@@ -5,7 +5,7 @@ import { NavLink as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { List, ListItem, Button, colors, Theme } from '@material-ui/core';
+import { List, ListItem, Button, colors, Theme, Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -45,7 +45,7 @@ const CustomRouterLink = forwardRef((props: any, ref: any) => (
     ref={ref}
     style={{ flexGrow: 1 }}
   >
-    <RouterLink {...props} />
+    {props.abosulte ? <Link href={props.to} {...props} /> : <RouterLink {...props} /> }
   </div>
 ));
 
@@ -69,6 +69,7 @@ const SidebarNav = (props: any) => {
             activeClassName={classes.active}
             className={classes.button}
             component={CustomRouterLink}
+            abosulte={page.absolutePath}
             to={page.href}
           >
             <div className={classes.icon}>{page.icon}</div>

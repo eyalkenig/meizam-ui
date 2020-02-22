@@ -8,6 +8,7 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 import { Profile, SidebarNav } from './components';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../store';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -53,6 +54,12 @@ const Sidebar = (props: any) => {
       title: 'Group Table',
       href: '/table',
       icon: <TableChartIcon />
+    },
+    {
+      title: 'Go to old site',
+      href: 'http://www.meizam.club',
+      absolutePath: true,
+      icon: <ExitToAppIcon />
     }
   ];
 
