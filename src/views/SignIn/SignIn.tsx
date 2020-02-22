@@ -36,23 +36,34 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   quoteContainer: {
     [theme.breakpoints.down('md')]: {
-      display: 'none'
+      display: 'none',
     }
   },
   quote: {
-    backgroundColor: theme.palette.common.white,
+    backgroundImage: 'url("/images/EURO_2020_login.jpg")',
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: 'url(/images/auth.jpg)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
   },
   quoteInner: {
     textAlign: 'center',
-    flexBasis: '600px'
+    flexBasis: '600px',
+  },
+  smallPhoto: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+    backgroundImage: 'url("/images/EURO_2020_login.jpg")',
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    top: '-100px',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat'
   },
   quoteText: {
     color: theme.palette.common.white,
@@ -95,6 +106,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingRight: 100,
     paddingBottom: 125,
     flexBasis: 700,
+    [theme.breakpoints.down('md')]: {
+      paddingTop: '220px',
+    },
     [theme.breakpoints.down('sm')]: {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2)
@@ -181,27 +195,6 @@ const SignIn = (props: any) => {
         >
           <div className={classes.quote}>
             <div className={classes.quoteInner}>
-              <Typography
-                className={classes.quoteText}
-                variant="h1"
-              >
-                The Meizam is a social prediction game. 
-                Join or create a group, and let the contest begin.
-              </Typography>
-              <div>
-                <Typography
-                  className={classes.name}
-                  variant="body1"
-                >
-                  Takamaru Ayako
-                </Typography>
-                <Typography
-                  className={classes.bio}
-                  variant="body2"
-                >
-                  Manager at inVision
-                </Typography>
-              </div>
             </div>
           </div>
         </Grid>
@@ -212,12 +205,9 @@ const SignIn = (props: any) => {
           xs={12}
         >
           <div className={classes.content}>
-            <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack}>
-                <ArrowBackIcon />
-              </IconButton>
-            </div>
             <div className={classes.contentBody}>
+              <div className={classes.smallPhoto}>
+              </div>
               <form
                 className={classes.form}
                 action="http://www.meizam.club/Account/LoginV2"
@@ -238,7 +228,7 @@ const SignIn = (props: any) => {
                   onChange={handleChange}
                   type="text"
                   value={(formState.values as any).username || ''}
-                  variant="outlined"
+                  variant="filled"
                 />
                 <TextField
                   className={classes.textField}
@@ -253,7 +243,7 @@ const SignIn = (props: any) => {
                   id="Password"
                   type="password"
                   value={(formState.values as any).password || ''}
-                  variant="outlined"
+                  variant="filled"
                 />
                 <Button
                   className={classes.signInButton}
