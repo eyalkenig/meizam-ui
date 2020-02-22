@@ -1,6 +1,7 @@
 export const FETCH_USER_INFO = 'FETCH_USER_INFO'
 export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCCESS'
 export const FETCH_USER_INFO_FAILURE = 'FETCH_USER_INFO_FAILURE'
+export const NOT_LOGGED_IN_EXCEPTION = 'NOT_LOGGED_IN_EXCEPTION'
 
 interface FetchUserInfoAction {
     type: typeof FETCH_USER_INFO
@@ -13,8 +14,10 @@ interface FetchUserInfoFailureAction {
     type: typeof FETCH_USER_INFO_FAILURE
     payload: string
 }
-
-export type UserActionTypes = FetchUserInfoAction | FetchUserInfoSuccessAction | FetchUserInfoFailureAction
+interface NotLoggedInExceptionAction {
+    type: typeof NOT_LOGGED_IN_EXCEPTION
+}
+export type UserActionTypes = FetchUserInfoAction | FetchUserInfoSuccessAction | FetchUserInfoFailureAction | NotLoggedInExceptionAction
 
 export interface UserPrediction {
     id: number;

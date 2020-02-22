@@ -21,8 +21,7 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 )
-sagaMiddleware.run(rootSaga)
-
+sagaMiddleware.run(rootSaga, browserHistory)
 export default class App extends Component {
   componentDidMount() {
     store.dispatch(fetchUserInfo())

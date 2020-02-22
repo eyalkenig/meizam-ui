@@ -40,34 +40,45 @@ app.get('/User/Info', (req, res) => {
   console.log('[GET] /User/Info')
   console.log('params:')
   console.log(req.params)
-  const status = 200
-  const response = {
-    status: 'ok',
-    response: {
-      ID: 123,
-      DisplayName: 'Oded Menashe',
-      ProfilePictureUrl: 'https://graph.facebook.com/1362300300/picture?type=large',
-      Groups: [
-        {
-          GroupId: 12,
-          DisplayName: 'המיזם',
-          Position: 43,
-          Points: 112,
-          TotalMembers: 55,
-          PictureUrl: null
-        },
-        {
-          GroupId: 125,
-          DisplayName: 'Yotpo',
-          Position: 2,
-          Points: 101,
-          TotalMembers: 11,
-          PictureUrl: null
-        }
-      ]
+  let status = 0
+  let response = {}
+  if (1==0) {
+    status = 200
+    console.log('[OK] 200')
+    response = {
+      status: 'error',
+      error: "must be logged in"
+    }
+  } else {
+    status = 200
+    console.log('[OK] 200')
+    response = {
+      status: 'ok',
+      response: {
+        ID: 123,
+        DisplayName: 'Oded Menashe',
+        ProfilePictureUrl: 'https://graph.facebook.com/1362300300/picture?type=large',
+        Groups: [
+          {
+            GroupId: 12,
+            DisplayName: 'המיזם',
+            Position: 43,
+            Points: 112,
+            TotalMembers: 55,
+            PictureUrl: null
+          },
+          {
+            GroupId: 125,
+            DisplayName: 'Yotpo',
+            Position: 2,
+            Points: 101,
+            TotalMembers: 11,
+            PictureUrl: null
+          }
+        ]
+      }
     }
   }
-  console.log('[OK] 200')
   console.log(response)
 
   res.status(status).send(response)
