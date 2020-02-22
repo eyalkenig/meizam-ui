@@ -85,7 +85,7 @@ const UsersTable = (props: any) => {
                       <div className={classes.nameContainer}>
                         <Avatar
                           className={classes.avatar}
-                          src={user.avatarUrl}
+                          src={user.profilePictureUrl}
                         >
                           {getInitials(user.name)}
                         </Avatar>

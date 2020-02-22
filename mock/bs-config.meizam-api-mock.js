@@ -89,7 +89,7 @@ app.get('/Group/Table', (req, res) => {
           DisplayName: 'Ekaterina Tankova',
           Position: 2,
           Points: 102,
-          ProfilePictureUrl: null
+          ProfilePictureUrl: 'https://s3.us-east-2.amazonaws.com/meizam-files/profile-pics/2110-de1b0eb2-1fd8-4f62-9ea5-596cdfbc820d'
         },
         {
           UserId: 124,
