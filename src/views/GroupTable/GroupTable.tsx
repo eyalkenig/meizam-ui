@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { UsersToolbar, UsersTable } from './components';
-import mockData from './data';
 import { Theme, Typography } from '@material-ui/core';
 import { RootState } from '../../store';
 import { connect } from 'react-redux';
