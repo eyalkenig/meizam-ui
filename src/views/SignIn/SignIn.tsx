@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: 125,
     flexBasis: 700,
     [theme.breakpoints.down('md')]: {
-      paddingTop: '220px',
+      paddingTop: '260px',
     },
     [theme.breakpoints.down('sm')]: {
       paddingLeft: theme.spacing(2),
