@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
-  CardActions,
   CardContent,
   Avatar,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
   Typography,
-  TablePagination,
   Theme
 } from '@material-ui/core';
 import getInitials from '../../../../services/utils/getInitials';
@@ -46,18 +42,6 @@ const UsersTable = (props: any) => {
   users.sort((a: any,b: any) => a.position > b.position ? 1 : -1);
   const classes = useStyles();
 
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [page, setPage] = useState(0);
-
-  const handlePageChange = (event: any, page: any) => {
-    setPage(page);
-  };
-
-  const handleRowsPerPageChange = (event: any) => {
-    setRowsPerPage(event.target.value);
-  };
-
   return (
     <Card
       {...rest}
@@ -75,7 +59,7 @@ const UsersTable = (props: any) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {users.slice(0, rowsPerPage).map((user: any) => (
+                {users.map((user: any) => (
                   <TableRow
                     hover
                     key={user.id}
@@ -100,17 +84,6 @@ const UsersTable = (props: any) => {
           </div>
         </PerfectScrollbar>
       </CardContent>
-      <CardActions className={classes.actions}>
-        <TablePagination
-          component="div"
-          count={users.length}
-          onChangePage={handlePageChange}
-          onChangeRowsPerPage={handleRowsPerPageChange}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={[5, 10, 25]}
-        />
-      </CardActions>
     </Card>
   );
 };
