@@ -57,13 +57,24 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
-    backgroundImage: 'url("/images/EURO_2020_login.jpg")',
+    backgroundImage: 'url("/images/EURO_2020_login_only_back.jpg")',
     height: '100%',
+    width: '120%',
+    position: 'absolute',
+    backgroundSize: '100% 100%',
+    // backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat'
+  },
+  mobileTextPhoto: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+    backgroundImage: 'url("/images/EURO_2020_login_only_text.png")',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    height: '84%',
     width: '100%',
     position: 'absolute',
-    top: '-100px',
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat'
   },
   quoteText: {
     color: theme.palette.common.white,
@@ -207,6 +218,8 @@ const SignIn = (props: any) => {
           <div className={classes.content}>
             <div className={classes.contentBody}>
               <div className={classes.smallPhoto}>
+              </div>
+              <div className={classes.mobileTextPhoto}>
               </div>
               <form
                 className={classes.form}
