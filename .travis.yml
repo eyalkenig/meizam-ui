@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - 10
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - ~/.cache # we also need to cache folder with Cypress binary
+# install:
+#   - npm ci
+script:
+  - yarn start &
+  - yarn meizamApi &
+  - cypress run

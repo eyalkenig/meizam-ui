@@ -63,6 +63,7 @@ const UsersTable = (props: any) => {
                   <TableRow
                     hover
                     key={user.id}
+                    data-cy="table-row"
                   >
                     <TableCell>{user.position}</TableCell>
                     <TableCell>

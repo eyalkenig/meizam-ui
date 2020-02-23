@@ -65,6 +65,7 @@ const Topbar = (props: any) => {
           <IconButton
             color="inherit"
             onClick={onSidebarOpen}
+            data-cy="open-menu"
           >
             <MenuIcon />
           </IconButton>
