@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: theme.spacing(1)
   },
   icon: {
-    width: 60
+    width: 40
   }
 }));
 
@@ -40,7 +40,7 @@ const Topbar = (props: any) => {
           <img
             className={classes.icon}
             alt="Logo"
-            src="/images/logos/meizam-euro2020.svg"
+            src="/logo192.png"
           />
         </RouterLink>
         <div className={classes.flexGrow} />
