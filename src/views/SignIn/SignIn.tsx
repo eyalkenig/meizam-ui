@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '120%',
     position: 'absolute',
     backgroundSize: '100% 100%',
-    // backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat'
   },
   mobileTextPhoto: {
