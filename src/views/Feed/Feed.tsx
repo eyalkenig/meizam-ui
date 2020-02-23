@@ -14,7 +14,8 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: theme.spacing(4)
-  }
+  },
+  feedGroup: {}
 }));
 
 const mapStateToProps = (state: RootState) => {
@@ -42,6 +43,7 @@ const Feed = (props: any, context: any) => {
             sm={6}
             xl={3}
             xs={12}
+            data-cy="feed-group"
           >
             <UserInGroupBadge
               displayName={group.displayName}
