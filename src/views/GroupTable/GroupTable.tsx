@@ -21,20 +21,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-interface IProps {}
-
-const GroupTable: FC<IProps> = () => {
+const GroupTable: FC = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const userGroups = useSelector(userGroupsSelector);
 	const tableView = useSelector(groupTableViewSelector);
-	if (tableView.selectedGroupId == 0) {
+	if (tableView.selectedGroupId === 0) {
 		if (userGroups.length > 0) {
 			dispatch(fetchGroupTable(userGroups[0].groupId));
 		}
 	}
 	const currentGroup = userGroups.find(
-		(x: UserGroupState) => x.groupId == tableView.selectedGroupId
+		(x: UserGroupState) => x.groupId === tableView.selectedGroupId
 	);
 	return (
 		<div className={classes.root}>
@@ -43,7 +41,7 @@ const GroupTable: FC<IProps> = () => {
 			</Typography>
 			<UsersToolbar />
 			<div className={classes.content}>
-				<UsersTable users={tableView.table} />
+				<UsersTable users={tableView.table} className='TODO' />
 			</div>
 		</div>
 	);
