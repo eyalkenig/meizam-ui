@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Theme } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import { UserInGroupBadge } from './components';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useSelector } from '../../hooks';
-import { RootState } from '../../store';
 import { UserGroupState } from '../../store/user/types';
 import { fetchGroupTable } from '../../store/groups/actions';
 import { useHistory } from 'react-router-dom';
 import { userGroupsSelector } from '../../store/selectors/user';
+import { PlainFunction } from '../../types/interfaces';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -18,13 +17,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 	feedGroup: {}
 }));
 
-const mapStateToProps = (state: RootState) => {
-	return {
-		groups: state.user.groups
-	};
-};
-const Feed = (props: any, context: any) => {
-	const { dispatch } = props;
+interface IProps {
+	onGroupClicked: PlainFunction;
+}
+
+const Feed: FC<IProps> = props => {
+	const dispatch = useDispatch();
 	const classes = useStyles();
 	const history = useHistory();
 	const groups = useSelector(userGroupsSelector);
@@ -59,9 +57,6 @@ const Feed = (props: any, context: any) => {
 	);
 };
 
-Feed.propTypes = {
-	onGroupClicked: PropTypes.func
-};
-const FeedContainer = connect(mapStateToProps)(Feed);
+const FeedContainer = Feed;
 
 export default FeedContainer;
