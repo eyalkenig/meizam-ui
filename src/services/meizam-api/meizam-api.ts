@@ -32,7 +32,7 @@ export default class MeizamApi {
       throw new Error(response.data.error)
     }
     return {
-      groupId: response.data.response.ID,
+      groupId: groupId,
       table: response.data.response.Users.map((userRow: any) => {
         return {
           id: userRow.UserId,
