@@ -32,11 +32,12 @@
 	},
 	"scripts": {
 		"start": "cross-env REACT_APP_MEIZAM_API_BASE_HOST=http://localhost:3533 react-scripts start",
-		"build": "REACT_APP_MEIZAM_API_BASE_HOST=http://localhost:3533 react-scripts build",
-		"build:prod": "REACT_APP_MEIZAM_API_BASE_HOST=http://www.meizam.club react-scripts build",
-		"test": "react-scripts test",
+		"build": "cross-env REACT_APP_MEIZAM_API_BASE_HOST=http://localhost:3533 react-scripts build",
+		"build:prod": "cross-env REACT_APP_MEIZAM_API_BASE_HOST=http://www.meizam.club react-scripts build",
+		"test": "cypress open",
 		"eject": "react-scripts eject",
-		"meizamApi": "lite-server --config=mock/bs-config.meizam-api-mock.js"
+		"meizamApi": "lite-server --config=mock/bs-config.meizam-api-mock.js",
+		"dev": "concurrently \"yarn meizamApi \" \"yarn start\" \"yarn test\" "
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -55,6 +56,7 @@
 	},
 	"devDependencies": {
 		"@types/react-redux": "^7.1.7",
+		"concurrently": "^5.1.0",
 		"cors": "^2.8.5",
 		"cypress": "^4.0.2",
 		"redux-devtools": "^3.5.0"
