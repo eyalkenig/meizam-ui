@@ -37,12 +37,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-interface IProps {
-	className: string;
+interface Props {
+	className?: string;
 	users: ITableRow[];
 }
 
-const UsersTable: FC<IProps> = (props: any) => {
+const UsersTable: FC<Props> = props => {
 	const { className, users, ...rest } = props;
 	users.sort((a: any, b: any) => (a.position > b.position ? 1 : -1));
 	const classes = useStyles();

@@ -41,7 +41,7 @@ const GroupTable: FC = () => {
 			</Typography>
 			<UsersToolbar />
 			<div className={classes.content}>
-				<UsersTable users={tableView.table} className='TODO' />
+				<UsersTable users={tableView.table} />
 			</div>
 		</div>
 	);
