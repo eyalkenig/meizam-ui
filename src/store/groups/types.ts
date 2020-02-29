@@ -30,6 +30,7 @@ export interface TableRow {
     displayName: string;
     profilePicture: string;
     points: number;
+    predictionId: number;
 }
 
 

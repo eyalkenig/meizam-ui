@@ -8,6 +8,8 @@ import { UserGroupState } from '../../store/user/types';
 import useSelector from '../../hooks/useSelector';
 import { userGroupsSelector } from '../../store/selectors/user';
 import { groupTableViewSelector } from '../../store/selectors/groups';
+import { fetchPrediction } from '../../store/predictions/actions';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -24,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const GroupTable: FC = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const userGroups = useSelector(userGroupsSelector);
 	const tableView = useSelector(groupTableViewSelector);
 	if (tableView.selectedGroupId === 0) {
@@ -41,7 +44,10 @@ const GroupTable: FC = () => {
 			</Typography>
 			<UsersToolbar />
 			<div className={classes.content}>
-				<UsersTable users={tableView.table} />
+				<UsersTable users={tableView.table}
+							onUserClicked={(predictionId: number) => {
+								history.push(`/prediction/${predictionId}`);
+							}} />
 			</div>
 		</div>
 	);
