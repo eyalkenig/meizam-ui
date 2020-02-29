@@ -8,6 +8,7 @@ import {
   Feed as FeedView,
   NotFound as NotFoundView,
   GroupTable as GroupTableView,
+  UserPrediction as UserPredictionView,
   SignIn as SignInView
 } from './views';
 
@@ -28,6 +29,11 @@ const Routes = () => {
         component={GroupTableView}
         layout={MainLayout}
         path="/table"
+      />
+      <RouteWithLayout
+        component={UserPredictionView}
+        layout={MainLayout}
+        path="/prediction/:predictionId"
       />
       <RouteWithLayout
         component={NotFoundView}

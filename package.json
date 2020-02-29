@@ -34,10 +34,10 @@
 		"start": "cross-env REACT_APP_MEIZAM_API_BASE_HOST=http://localhost:3533 react-scripts start",
 		"build": "cross-env REACT_APP_MEIZAM_API_BASE_HOST=http://localhost:3533 react-scripts build",
 		"build:prod": "cross-env REACT_APP_MEIZAM_API_BASE_HOST=http://www.meizam.club react-scripts build",
-		"test": "cypress open",
+		"cypress:open": "cypress open",
 		"eject": "react-scripts eject",
 		"meizamApi": "lite-server --config=mock/bs-config.meizam-api-mock.js",
-		"dev": "concurrently \"yarn meizamApi \" \"yarn start\" \"yarn test\" "
+		"dev": "concurrently \"yarn meizamApi \" \"yarn start\" \"yarn cypress:open\" "
 	},
 	"eslintConfig": {
 		"extends": "react-app"

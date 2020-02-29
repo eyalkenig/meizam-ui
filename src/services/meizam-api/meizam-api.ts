@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Prediction } from '../../store/predictions/types';
 
 export default class MeizamApi {
   static async FetchUserInfo(): Promise<any> {
@@ -39,18 +40,46 @@ export default class MeizamApi {
           name: userRow.DisplayName,
           position: userRow.Position,
           points: userRow.Points,
-          profilePictureUrl: userRow.ProfilePictureUrl
+          profilePictureUrl: userRow.ProfilePictureUrl,
+          predictionId: userRow.PredictionId
         }
       })
     }
   }
 
-  private static async post(path: string, body: any): Promise<any> {
+  static FetchPrediction(predictionId: number): Promise<Prediction> {
+    return new Promise((resolve, reject) => {
+      MeizamApi.get(`/Group/Prediction`, { predictionId: predictionId }).then(response => {
+        if (response.data.status != 'ok') {
+          console.log(response.data)
+          throw new Error(response.data.error)
+        }
+        const data = response.data.response;
+        resolve({
+          id: predictionId,
+          metadata: {
+            displayName: data.DisplayName,
+            points: data.Points,
+            position: data.Position,
+            profilePicture: data.ProfilePictureUrl,
+            winningTeam: data.WinningTeam,
+            winningTeamLogoUrl: data.WinningTeamLogoUrl,
+            groupId: data.GroupId,
+            totalGroupMembers: data.TotalGroupMembers,
+          }
+        });
+      }).catch(error => {
+        reject(error)
+      })
+    });
+  }
+
+  private static post(path: string, body: any): Promise<any> {
     const baseUrl = MeizamApi.getBaseAndSetCredentials()
     return axios.post(`${baseUrl}${path}`, body)
   }
 
-  private static async get(path: string, params: any): Promise<any> {
+  private static get(path: string, params: any): Promise<any> {
     const baseUrl = MeizamApi.getBaseAndSetCredentials()
     return axios.get(`${baseUrl}${path}`, { params })
   }

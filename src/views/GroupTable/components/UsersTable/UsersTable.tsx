@@ -16,6 +16,7 @@ import {
 } from '@material-ui/core';
 import getInitials from '../../../../services/utils/getInitials';
 import { TableRow as ITableRow } from '../../../../store/groups/types';
+import { PlainFunction } from '../../../../types/interfaces';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {},
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface Props {
 	className?: string;
 	users: ITableRow[];
+	onUserClicked: PlainFunction;
 }
 
 const UsersTable: FC<Props> = props => {
@@ -69,10 +71,11 @@ const UsersTable: FC<Props> = props => {
 												<Avatar
 													className={classes.avatar}
 													src={user.profilePictureUrl}
+													onClick={() => props.onUserClicked(user.predictionId)}
 												>
 													{getInitials(user.name)}
 												</Avatar>
-												<Typography variant='body1'>{user.name}</Typography>
+												<Typography variant='body1' onClick={() => props.onUserClicked(user.predictionId)}>{user.name}</Typography>
 											</div>
 										</TableCell>
 										<TableCell>{user.points}</TableCell>

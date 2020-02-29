@@ -15,7 +15,7 @@ describe('Feed test', function() {
         cy.get('[data-cy="feed-group"]')
           .first()
           .should('contain', 'המיזם')
-          .should('contain', '43')
+          .should('contain', '2')
     })
     it('should open table of group', function() {
         cy.visit('/feed')
