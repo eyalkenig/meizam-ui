@@ -41,7 +41,8 @@ export default class MeizamApi {
           position: userRow.Position,
           points: userRow.Points,
           profilePictureUrl: userRow.ProfilePictureUrl,
-          predictionId: userRow.PredictionId
+          predictionId: userRow.PredictionId,
+          winningTeamLogoUrl: userRow.WinningTeamLogoUrl
         }
       })
     }
