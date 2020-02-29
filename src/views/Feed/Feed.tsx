@@ -46,8 +46,7 @@ const Feed: FC<IProps> = props => {
 							position={group.position}
 							totalMembers={group.totalMembers}
 							onGroupClicked={() => {
-								dispatch(fetchGroupTable(group.groupId));
-								history.push('/table');
+								history.push(`/table/${group.groupId}`);
 							}}
 						/>
 					</Grid>

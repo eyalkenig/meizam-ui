@@ -28,6 +28,11 @@ const Routes = () => {
       <RouteWithLayout
         component={GroupTableView}
         layout={MainLayout}
+        path="/table/:groupId"
+      />
+      <RouteWithLayout
+        component={GroupTableView}
+        layout={MainLayout}
         path="/table"
       />
       <RouteWithLayout

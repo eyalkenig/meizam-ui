@@ -6,6 +6,7 @@ import { UserProfile } from './components';
 import { useSelector, useDispatch } from 'react-redux';
 import { predictionSelector } from '../../store/selectors/prediction';
 import { fetchPrediction } from '../../store/predictions/actions';
+import { RouterMatch } from '../../types/interfaces';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -15,9 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center'
   }
 }));
-interface RouterMatch {
-  params: any
-}
 interface Props {
   match: RouterMatch
 }

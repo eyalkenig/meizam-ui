@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
 
 import { SearchInput } from '../../../../components';
+import { PlainFunction } from '../../../../types/interfaces';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -27,9 +28,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1)
   }
 }));
-
-const UsersToolbar = (props: any) => {
-  const { className, ...rest } = props;
+interface Props {
+  className?: string
+  searchText: string
+	onSearchInputChange: PlainFunction
+}
+const UsersToolbar: FC<Props> = props => {
+  const { className, searchText, onSearchInputChange, ...rest } = props;
 
   const classes = useStyles();
 
@@ -40,16 +45,15 @@ const UsersToolbar = (props: any) => {
     >
       <div className={classes.row}>
         <SearchInput
+          searchText={searchText}
+          onChange={onSearchInputChange}
           className={classes.searchInput}
           placeholder="Search user"
+          data-cy="search-user"
         />
       </div>
     </div>
   );
-};
-
-UsersToolbar.propTypes = {
-  className: PropTypes.string
 };
 
 export default UsersToolbar;
