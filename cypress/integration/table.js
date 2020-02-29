@@ -16,5 +16,6 @@ describe('GroupTable test', function() {
             .should('contain', '1')
             .should('contain', 'Alexa Richardson')
             .should('contain', '120')
+            .get('[data-cy=winner-flag]').find('img').should('have.attr', 'src').should('include', 'ita.png')
     })
 })

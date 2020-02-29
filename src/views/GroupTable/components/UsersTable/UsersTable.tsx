@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withStyles } from '@material-ui/styles';
 import {
 	Card,
 	CardContent,
@@ -12,14 +12,26 @@ import {
 	TableHead,
 	TableRow,
 	Typography,
-	Theme
+	Theme,
+	Badge
 } from '@material-ui/core';
 import getInitials from '../../../../services/utils/getInitials';
 import { TableRow as ITableRow } from '../../../../store/groups/types';
 import { PlainFunction } from '../../../../types/interfaces';
 
+const SmallAvatar = withStyles((theme: Theme) => ({
+	root: {
+	  width: 17,
+	  height: 17,
+	  border: `2px solid ${theme.palette.background.paper}`,
+	},
+  }))(Avatar);
+
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {},
+	badge: {
+		marginRight: '16px'
+	},
 	content: {
 		padding: 0
 	},
@@ -30,9 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		display: 'flex',
 		alignItems: 'center'
 	},
-	avatar: {
-		marginRight: theme.spacing(2)
-	},
+	avatar: {},
 	actions: {
 		justifyContent: 'flex-end'
 	}
@@ -68,13 +78,24 @@ const UsersTable: FC<Props> = props => {
 										<TableCell>{user.position}</TableCell>
 										<TableCell>
 											<div className={classes.nameContainer}>
-												<Avatar
-													className={classes.avatar}
-													src={user.profilePictureUrl}
-													onClick={() => props.onUserClicked(user.predictionId)}
+												<Badge
+													className={classes.badge}
+													overlap="circle"
+													anchorOrigin={{
+														vertical: 'bottom',
+														horizontal: 'right',
+													}}
+													badgeContent={<SmallAvatar src={user.winningTeamLogoUrl} data-cy='winner-flag' />}
 												>
-													{getInitials(user.name)}
-												</Avatar>
+													<Avatar
+														className={classes.avatar}
+														src={user.profilePictureUrl}
+														onClick={() => props.onUserClicked(user.predictionId)}
+														data-cy='user-profile-picture'
+													>
+														{getInitials(user.name)}
+													</Avatar>
+												</Badge>
 												<Typography variant='body1' onClick={() => props.onUserClicked(user.predictionId)}>{user.name}</Typography>
 											</div>
 										</TableCell>

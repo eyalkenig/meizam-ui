@@ -7,12 +7,12 @@ const predictions = [
       DisplayName: 'Ekaterina Tankova',
       Position: 2,
       Points: 102,
-      ProfilePictureUrl: 'https://s3.us-east-2.amazonaws.com/meizam-files/profile-pics/2110-de1b0eb2-1fd8-4f62-9ea5-596cdfbc820d'
+      ProfilePictureUrl: 'https://s3.us-east-2.amazonaws.com/meizam-files/profile-pics/2110-de1b0eb2-1fd8-4f62-9ea5-596cdfbc820d',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/fra.png'
     },
     view: {
       TotalGroupMembers: 3,
-      WinningTeam: 'France',
-      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/fra.png'
+      WinningTeam: 'France'
     }
   },
   {
@@ -23,12 +23,12 @@ const predictions = [
       DisplayName: 'Cao Yu',
       Position: 3,
       Points: 70,
-      ProfilePictureUrl: null
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
     },
     view: {
       TotalGroupMembers: 3,
-      WinningTeam: 'Italy',
-      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+      WinningTeam: 'Italy'
     }
   },
   {
@@ -39,12 +39,12 @@ const predictions = [
       DisplayName: 'Alexa Richardson',
       Position: 1,
       Points: 120,
-      ProfilePictureUrl: null
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
     },
     view: {
       TotalGroupMembers: 3,
-      WinningTeam: 'Italy',
-      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+      WinningTeam: 'Italy'
     }
   },
   {

@@ -31,6 +31,7 @@ export interface TableRow {
     profilePicture: string;
     points: number;
     predictionId: number;
+    winningTeamLogoUrl: string;
 }
 
 
