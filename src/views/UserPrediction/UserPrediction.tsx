@@ -25,11 +25,9 @@ const UserPredictionContainer: FC<Props> = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const predictionView = useSelector(predictionSelector);
-  if (!predictionView.fetching && predictionView.prediction.id == 0) {
-    const predictionId = props.match.params.predictionId;
-    if (predictionId) {
-      dispatch(fetchPrediction(predictionId))
-    }
+  const predictionId = props.match.params.predictionId;
+  if (!predictionView.fetching && predictionView.prediction.id != predictionId) {
+    dispatch(fetchPrediction(predictionId))
   }
   return (
     <div className={classes.root}>
