@@ -17,4 +17,14 @@ describe('UserPrediction test', function() {
         cy.get('[data-cy=user-prediction-card-winning-flag]').find('img').should('have.attr', 'src').should('include', 'fra.png')
         cy.get('[data-cy=user-prediction-card-user-avatar]').find('img').should('have.attr', 'src').should('include', 'meizam-files/profile-pics')
     })
+    it('should load different predictions', function() {
+        cy.visit('/table')
+        cy.contains('Ekaterina Tankova').click()
+        cy.go('back')
+
+        cy.contains('Cao Yu').click()
+
+        cy.get('[data-cy=user-prediction-card]')
+          .should('contain', 'Cao Yu')
+    })
 })
