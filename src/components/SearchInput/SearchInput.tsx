@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Paper, Input, Theme } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-
+import { PlainFunction } from '../../types/interfaces';
+import CancelIcon from '@material-ui/icons/Cancel';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     borderRadius: '4px',
@@ -25,8 +25,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const SearchInput = (props: any) => {
-  const { className, onChange, style, placeholder, ...rest } = props;
+interface Props {
+  className: string,
+  placeholder: string,
+  onChange: PlainFunction,
+  style?: any,
+  searchText: string
+}
+
+const SearchInput: FC<Props> = props => {
+  const { className, onChange, style, placeholder, searchText, ...rest } = props;
 
   const classes = useStyles();
 
@@ -39,20 +47,18 @@ const SearchInput = (props: any) => {
       <SearchIcon className={classes.icon} />
       <Input
         {...rest}
+        value={searchText}
         placeholder={placeholder}
         className={classes.input}
         disableUnderline
-        onChange={onChange}
+        onChange={(event) => onChange(event.target.value)}
+        data-cy="search-input"
       />
+      {
+        searchText.length > 0 ? <CancelIcon onClick={() => onChange('')} data-cy="search-clear"/> : null
+      }
     </Paper>
   );
-};
-
-SearchInput.propTypes = {
-  className: PropTypes.string,
-  placeholder: PropTypes.string,
-  onChange: PropTypes.func,
-  style: PropTypes.object
 };
 
 export default SearchInput;

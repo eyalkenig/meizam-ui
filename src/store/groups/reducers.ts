@@ -1,11 +1,12 @@
-import { GroupsState, GroupsActionTypes, FETCH_GROUP_TABLE_SUCCESS, Group, FETCH_GROUP_TABLE } from "./types";
+import { GroupsState, GroupsActionTypes, FETCH_GROUP_TABLE_SUCCESS, Group, FETCH_GROUP_TABLE, SEARCH_GROUP_TABLE } from "./types";
 
 const initialState: GroupsState = {
     groups: [],
     tableView: {
       selectedGroupId: 0,
       table: []
-    }
+    },
+    searchText: ''
 }
 
 export function groupReducer(
@@ -29,6 +30,11 @@ export function groupReducer(
             table: action.payload.table
           }
         }
+      case SEARCH_GROUP_TABLE:
+          return {
+            ...state,
+            searchText: action.payload
+          }
       default:
         return state
     }
