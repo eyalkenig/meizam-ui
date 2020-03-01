@@ -25,4 +25,13 @@ describe('Feed test', function() {
         cy.url().should('include', '/table')
         cy.contains('Yotpo')
     })
+
+    it('should go back to feed clicking back', function() {
+        cy.visit('/feed')
+        cy.contains('Yotpo').click()
+
+        cy.get('[data-cy="back-button"]').click()
+
+        cy.get('[data-cy="feed-group"]').should('have.length', 2)
+    })
 })
