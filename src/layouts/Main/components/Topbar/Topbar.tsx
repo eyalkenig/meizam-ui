@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useState, FC } from 'react';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar, Badge, Hidden, IconButton, Theme } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
+import { PlainFunction } from '../../../../types/interfaces';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -23,11 +24,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const Topbar = (props: any) => {
+interface Props {
+  className?: string;
+  onSidebarOpen: PlainFunction;
+}
+
+const Topbar: FC<Props> = props => {
   const { className, onSidebarOpen, ...rest } = props;
 
   const classes = useStyles();
-
+  const history = useHistory();
   const [notifications] = useState([]);
 
   return (
@@ -36,6 +42,8 @@ const Topbar = (props: any) => {
       className={clsx(classes.root, className)}
     >
       <Toolbar>
+        <ArrowBackIosIcon onClick={() => history.goBack()} data-cy="back-button"/>
+        <div className={classes.flexGrow} />
         <RouterLink to="/">
           <img
             className={classes.icon}
@@ -43,7 +51,6 @@ const Topbar = (props: any) => {
             src="/logo192.png"
           />
         </RouterLink>
-        <div className={classes.flexGrow} />
         <Hidden mdDown>
           <IconButton color="inherit">
             <Badge
@@ -73,11 +80,6 @@ const Topbar = (props: any) => {
       </Toolbar>
     </AppBar>
   );
-};
-
-Topbar.propTypes = {
-  className: PropTypes.string,
-  onSidebarOpen: PropTypes.func
 };
 
 export default Topbar;
