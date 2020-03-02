@@ -74,7 +74,7 @@ const predictions = [
       GroupStage: {
         Prediction: prediction,
         GainedPoints: 9,
-        TotalPotenitalPoints: 24
+        TotalPotentialPoints: 24
       }
     }
   },
@@ -97,7 +97,7 @@ const predictions = [
       GroupStage: {
         Prediction: prediction,
         GainedPoints: 3,
-        TotalPotenitalPoints: 24
+        TotalPotentialPoints: 24
       }
     }
   },
@@ -120,7 +120,7 @@ const predictions = [
       GroupStage: {
         Prediction: prediction,
         GainedPoints: 12,
-        TotalPotenitalPoints: 24
+        TotalPotentialPoints: 24
       }
     }
   },
@@ -143,7 +143,7 @@ const predictions = [
       GroupStage: {
         Prediction: prediction,
         GainedPoints: 23,
-        TotalPotenitalPoints: 24
+        TotalPotentialPoints: 24
       }
     }
   }

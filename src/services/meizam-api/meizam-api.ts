@@ -84,7 +84,7 @@ export default class MeizamApi {
               }
             }),
             gainedPoints: data.GroupStage.GainedPoints,
-            totalAvailablePoints: data.GroupStage.TotalPotenitalPoints
+            totalAvailablePoints: data.GroupStage.TotalPotentialPoints
           }
         });
       }).catch(error => {
