@@ -1,13 +1,11 @@
 import React, { useState, useEffect, FC } from 'react';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 
-import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
 import {
 	Grid,
 	Button,
-	IconButton,
 	TextField,
 	Link,
 	Typography,
@@ -144,7 +142,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-const SignIn: FC = (props: any) => {
+const SignIn: FC = () => {
 	const history = useHistory();
 
 	const classes = useStyles();
@@ -267,10 +265,6 @@ const SignIn: FC = (props: any) => {
 			</Grid>
 		</div>
 	);
-};
-
-SignIn.propTypes = {
-	history: PropTypes.object
 };
 
 export default SignIn;
