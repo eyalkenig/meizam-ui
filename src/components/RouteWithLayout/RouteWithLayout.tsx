@@ -1,26 +1,25 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-const RouteWithLayout = (props: any) => {
-  const { layout: Layout, component: Component, ...rest } = props;
+interface Props {
+	layout: FC<any>;
+	component: FC<any>;
+	path: string;
+}
 
-  return (
-    <Route
-      {...rest}
-      render={(matchProps: any) => (
-        <Layout>
-          <Component {...matchProps} />
-        </Layout>
-      )}
-    />
-  );
-};
+const RouteWithLayout: FC<Props> = props => {
+	const { layout: Layout, component: Component, ...rest } = props;
 
-RouteWithLayout.propTypes = {
-  component: PropTypes.any.isRequired,
-  layout: PropTypes.any.isRequired,
-  path: PropTypes.string
+	return (
+		<Route
+			{...rest}
+			render={(matchProps: any) => (
+				<Layout>
+					<Component {...matchProps} />
+				</Layout>
+			)}
+		/>
+	);
 };
 
 export default RouteWithLayout;

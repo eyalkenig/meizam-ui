@@ -1,20 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/styles';
-import { Divider, Drawer, Theme } from '@material-ui/core';
+import { Divider, Drawer, Theme, DrawerVariant } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import { Profile, SidebarNav } from './components';
-import { connect } from 'react-redux';
-import { RootState } from '../../../../store';
+import useSelector from '../../../../hooks/useSelector';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
-const mapStateToProps = (state: RootState) => {
-	return {
-		user: state.user
-	};
-};
+import { userSelector } from '../../../../store/selectors/user';
+import { PlainFunction, Page } from '../../../../types/interfaces';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	drawer: {
@@ -39,12 +34,20 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-const Sidebar = (props: any) => {
-	const { open, variant, onClose, className, ...rest } = props;
+interface Props {
+	onClose: PlainFunction;
+	open: boolean;
+	variant: DrawerVariant;
+}
+
+const Sidebar: FC<Props> = props => {
+	const { open, variant, onClose } = props;
+
+	const { displayName, profilePicture } = useSelector(userSelector);
 
 	const classes = useStyles();
 
-	const pages = [
+	const pages: Array<Page> = [
 		{
 			title: 'Feed',
 			href: '/feed',
@@ -71,11 +74,8 @@ const Sidebar = (props: any) => {
 			open={open}
 			variant={variant}
 		>
-			<div className={clsx(classes.root, className)}>
-				<Profile
-					userName={props.user.displayName}
-					avatar={props.user.profilePicture}
-				/>
+			<div className={clsx(classes.root)}>
+				<Profile userName={displayName} avatar={profilePicture} />
 				<Divider className={classes.divider} />
 				<SidebarNav className={classes.nav} pages={pages} />
 			</div>
@@ -83,13 +83,6 @@ const Sidebar = (props: any) => {
 	);
 };
 
-Sidebar.propTypes = {
-	className: PropTypes.string,
-	onClose: PropTypes.func,
-	open: PropTypes.bool.isRequired,
-	variant: PropTypes.string.isRequired
-};
-
-const SidebarContainer = connect(mapStateToProps)(Sidebar);
+const SidebarContainer = Sidebar;
 
 export default SidebarContainer;
