@@ -38,7 +38,8 @@ function groupPrediction(req, res) {
         response: {
           GroupId: prediction.GroupId,
           ...prediction.table,
-          ...prediction.view
+          ...prediction.view,
+          ...prediction.groupStage
         }
       }
     }

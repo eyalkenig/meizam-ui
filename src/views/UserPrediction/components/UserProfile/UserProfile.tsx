@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import React, { FC } from 'react';
 import clsx from 'clsx';
-import { Prediction } from '../../../../store/predictions/types';
+import { Prediction, PredictionMetadata } from '../../../../store/predictions/types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 interface Props {
 	className?: string;
-  prediction: Prediction;
+  metadata: PredictionMetadata;
 }
 interface User {
   name: string
@@ -53,20 +53,17 @@ interface User {
   winningTeamLogoUrl: string
 }
 const UserProfile: FC<Props> = props => {
-  const { className, prediction, ...rest } = props;
+  const { className, metadata, ...rest } = props;
   const classes = useStyles();
 
-  if (!prediction.metadata) {
-    return (<div></div>);
-  }
   const user = {
-    name: prediction.metadata.displayName,
-    avatar: prediction.metadata.profilePicture,
-    points: prediction.metadata.points,
-    position: prediction.metadata.position,
-    totalMembers: prediction.metadata.totalGroupMembers,
-    winningTeam: prediction.metadata.winningTeam,
-    winningTeamLogoUrl: prediction.metadata.winningTeamLogoUrl
+    name: metadata.displayName,
+    avatar: metadata.profilePicture,
+    points: metadata.points,
+    position: metadata.position,
+    totalMembers: metadata.totalGroupMembers,
+    winningTeam: metadata.winningTeam,
+    winningTeamLogoUrl: metadata.winningTeamLogoUrl
   }
 
   return (

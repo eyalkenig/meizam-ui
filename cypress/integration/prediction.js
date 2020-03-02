@@ -27,4 +27,34 @@ describe('UserPrediction test', function() {
         cy.get('[data-cy=user-prediction-card]')
           .should('contain', 'Cao Yu')
     })
+    it('should show groups prediction', function() {
+        cy.visit('/prediction/12321')
+
+        cy.contains('Groups Stage')
+        cy.contains('9/24 Points').click()
+
+        cy.get('[data-cy="prediction-table-row"][data-position=1]')
+          .should('contain', '1')
+          .should('contain', 'Italy')
+          .should('contain', '+1 Point')
+
+        cy.get('[data-cy="prediction-table-row"][data-position=2]')
+          .should('contain', '2')
+          .should('contain', 'Turkey')
+          .should('contain', '0 Point')
+
+        cy.get('[data-cy="prediction-table-row"][data-position=3]')
+        .should('contain', '3')
+        .should('contain', 'Wales')
+
+        cy.get('[data-cy="prediction-table-row"][data-position=4]')
+        .should('contain', '4')
+        .should('contain', 'Switzerland')
+
+        cy.contains('Group B').click()
+        cy.get('[data-cy="prediction-table-row"][data-position=1]')
+          .should('contain', '1')
+          .should('contain', 'Belgium')
+          .should('contain', '+1')
+    })
 })

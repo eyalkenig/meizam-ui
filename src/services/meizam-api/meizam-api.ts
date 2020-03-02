@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Prediction } from '../../store/predictions/types';
+import { Prediction, PredictionGroupStageRow, GroupPrediction } from '../../store/predictions/types';
 
 export default class MeizamApi {
   static async FetchUserInfo(): Promise<any> {
@@ -47,7 +47,6 @@ export default class MeizamApi {
       })
     }
   }
-
   static FetchPrediction(predictionId: number): Promise<Prediction> {
     return new Promise((resolve, reject) => {
       MeizamApi.get(`/Group/Prediction`, { predictionId: predictionId }).then(response => {
@@ -67,6 +66,25 @@ export default class MeizamApi {
             winningTeamLogoUrl: data.WinningTeamLogoUrl,
             groupId: data.GroupId,
             totalGroupMembers: data.TotalGroupMembers,
+          },
+          groupsStage: {
+            prediction: data.GroupStage.Prediction.map((groupPrediction: any): GroupPrediction =>{
+              return {
+                stageName: groupPrediction.StageName,
+                prediction: groupPrediction.Prediction.map((team: any): PredictionGroupStageRow => {
+                  return {
+                    position: team.Position,
+                    teamId: team.TeamId,
+                    teamName: team.TeamName,
+                    flagUrl: team.FlagUrl,
+                    awardPoints: team.AwardPoints,
+                    isCorrect: team.IsCorrect
+                  }
+                })
+              }
+            }),
+            gainedPoints: data.GroupStage.GainedPoints,
+            totalAvailablePoints: data.GroupStage.TotalPotenitalPoints
           }
         });
       }).catch(error => {
