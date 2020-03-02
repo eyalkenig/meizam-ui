@@ -28,9 +28,30 @@ export interface PredictionMetadata {
     totalGroupMembers: number;
 }
 
+
+export interface PredictionGroupStageRow {
+    position: number;
+    teamId: number;
+    teamName: string;
+    flagUrl: string;
+    awardPoints: number;
+    isCorrect: boolean;
+}
+export interface GroupPrediction {
+    stageName: string;
+    prediction: PredictionGroupStageRow[];
+}
+
+export interface GroupsStagePrediction {
+   prediction: GroupPrediction[];
+   gainedPoints: number;
+   totalAvailablePoints: number;
+}
+
 export interface Prediction {
     id: number;
     metadata?: PredictionMetadata;
+    groupsStage?: GroupsStagePrediction;
 }
 
 export interface PredictionState {

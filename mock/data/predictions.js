@@ -1,3 +1,59 @@
+const groupA = {
+  StageName: "Group A",
+  Prediction: [
+    { Position: 1, IsCorrect: true, AwardPoints: 1, TeamId: 19, TeamName: 'Italy', FlagUrl: 'http://img.fifa.com/images/flags/4/ita.png'},
+    { Position: 2, IsCorrect: false, AwardPoints: 0, TeamId: 12, TeamName: 'Turkey', FlagUrl: 'http://img.fifa.com/images/flags/4/tur.png'},
+    { Position: 3, IsCorrect: true, AwardPoints: 1, TeamId: 15, TeamName: 'Wales', FlagUrl: 'http://img.fifa.com/images/flags/4/wal.png'},
+    { Position: 4, IsCorrect: false, AwardPoints: 0, TeamId: 21, TeamName: 'Switzerland', FlagUrl: 'http://img.fifa.com/images/flags/4/sui.png'}
+  ]
+}
+const groupB = {
+  StageName: "Group B",
+  Prediction: [
+    { Position: 1, IsCorrect: true, AwardPoints: 1, TeamId: 190, TeamName: 'Belgium', FlagUrl: 'http://img.fifa.com/images/flags/4/bel.png'},
+    { Position: 2, IsCorrect: false, AwardPoints: 0, TeamId: 120, TeamName: 'Denmark', FlagUrl: 'http://img.fifa.com/images/flags/4/den.png'},
+    { Position: 3, IsCorrect: false, AwardPoints: 0, TeamId: 150, TeamName: 'Russia', FlagUrl: 'http://img.fifa.com/images/flags/4/rus.png'},
+    { Position: 4, IsCorrect: false, AwardPoints: 0, TeamId: 210, TeamName: 'Finland', FlagUrl: 'http://img.fifa.com/images/flags/4/fin.png'}
+  ]
+}
+const groupC = {
+  StageName: "Group C",
+  Prediction: [
+    { Position: 1, IsCorrect: true, AwardPoints: 1, TeamId: 1900, TeamName: 'Netherland', FlagUrl: 'http://img.fifa.com/images/flags/4/ned.png'},
+    { Position: 2, IsCorrect: true, AwardPoints: 1, TeamId: 1200, TeamName: 'Austria', FlagUrl: 'http://img.fifa.com/images/flags/4/aus.png'},
+    { Position: 3, IsCorrect: true, AwardPoints: 1, TeamId: 1500, TeamName: 'Ukraine', FlagUrl: 'http://img.fifa.com/images/flags/4/ukr.png'},
+    { Position: 4, IsCorrect: true, AwardPoints: 1, TeamId: 2100, TeamName: 'D Winner', FlagUrl: ''}
+  ]
+}
+const groupD = {
+  StageName: "Group D",
+  Prediction: [
+    { Position: 1, IsCorrect: false, AwardPoints: 0, TeamId: 190, TeamName: 'Croatia', FlagUrl: 'http://img.fifa.com/images/flags/4/cro.png'},
+    { Position: 2, IsCorrect: false, AwardPoints: 0, TeamId: 120, TeamName: 'Czech Republic', FlagUrl: 'http://img.fifa.com/images/flags/4/cze.png'},
+    { Position: 3, IsCorrect: false, AwardPoints: 0, TeamId: 150, TeamName: 'England', FlagUrl: 'http://img.fifa.com/images/flags/4/eng.png'},
+    { Position: 4, IsCorrect: false, AwardPoints: 0, TeamId: 210, TeamName: 'C Winner', FlagUrl: ''}
+  ]
+}
+const groupE = {
+  StageName: "Group E",
+  Prediction: [
+    { Position: 1, IsCorrect: true, AwardPoints: 1, TeamId: 190, TeamName: 'Spain', FlagUrl: 'http://img.fifa.com/images/flags/4/esp.png'},
+    { Position: 2, IsCorrect: true, AwardPoints: 1, TeamId: 120, TeamName: 'Poland', FlagUrl: 'http://img.fifa.com/images/flags/4/pol.png'},
+    { Position: 3, IsCorrect: false, AwardPoints: 0, TeamId: 150, TeamName: 'Sweden', FlagUrl: 'http://img.fifa.com/images/flags/4/swe.png'},
+    { Position: 4, IsCorrect: false, AwardPoints: 0, TeamId: 210, TeamName: 'B Winner', FlagUrl: ''}
+  ]
+}
+const groupF = {
+  StageName: "Group F",
+  Prediction: [
+    { Position: 1, IsCorrect: false, AwardPoints: 0, TeamId: 190, TeamName: 'France', FlagUrl: 'http://img.fifa.com/images/flags/4/fra.png'},
+    { Position: 2, IsCorrect: false, AwardPoints: 0, TeamId: 120, TeamName: 'Germany', FlagUrl: 'http://img.fifa.com/images/flags/4/ger.png'},
+    { Position: 3, IsCorrect: false, AwardPoints: 0, TeamId: 150, TeamName: 'Portugal', FlagUrl: 'http://img.fifa.com/images/flags/4/por.png'},
+    { Position: 4, IsCorrect: false, AwardPoints: 0, TeamId: 210, TeamName: 'A Winner', FlagUrl: ''}
+  ]
+}
+const prediction = [groupA, groupB, groupC, groupD, groupE, groupF]
+
 const predictions = [
   {
     GroupId: 12,
@@ -13,6 +69,13 @@ const predictions = [
     view: {
       TotalGroupMembers: 3,
       WinningTeam: 'France'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: prediction,
+        GainedPoints: 9,
+        TotalPotenitalPoints: 24
+      }
     }
   },
   {
@@ -29,6 +92,13 @@ const predictions = [
     view: {
       TotalGroupMembers: 3,
       WinningTeam: 'Italy'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: prediction,
+        GainedPoints: 3,
+        TotalPotenitalPoints: 24
+      }
     }
   },
   {
@@ -45,6 +115,13 @@ const predictions = [
     view: {
       TotalGroupMembers: 3,
       WinningTeam: 'Italy'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: prediction,
+        GainedPoints: 12,
+        TotalPotenitalPoints: 24
+      }
     }
   },
   {
@@ -61,6 +138,13 @@ const predictions = [
       TotalGroupMembers: 1,
       WinningTeam: 'Italy',
       WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: prediction,
+        GainedPoints: 23,
+        TotalPotenitalPoints: 24
+      }
     }
   }
 ]

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { predictionSelector } from '../../store/selectors/prediction';
 import { fetchPrediction } from '../../store/predictions/actions';
 import { RouterMatch } from '../../types/interfaces';
+import GroupsStats from './components/GroupsStats';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -35,9 +36,9 @@ const UserPredictionContainer: FC<Props> = props => {
       >
         <Grid
           item
-          lg={4}
-          md={6}
-          xl={4}
+          lg={12}
+          md={12}
+          xl={12}
           xs={12}
         >
           {predictionView.fetching ?
@@ -45,16 +46,13 @@ const UserPredictionContainer: FC<Props> = props => {
             <CircularProgress/>
           </div>
           :
-          <UserProfile prediction={predictionView.prediction} />
+          <div>
+            {predictionView.prediction.metadata &&
+              <UserProfile metadata={predictionView.prediction.metadata} />}
+            {predictionView.prediction.groupsStage &&
+              <GroupsStats groupsPrediction={predictionView.prediction.groupsStage} />}
+          </div>
           }
-        </Grid>
-        <Grid
-          item
-          lg={8}
-          md={6}
-          xl={8}
-          xs={12}
-        >
         </Grid>
       </Grid>
     </div>
