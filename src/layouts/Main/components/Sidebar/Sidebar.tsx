@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import clsx from 'clsx';
 
 import { makeStyles } from '@material-ui/styles';
-import { Divider, Drawer, Theme, DrawerVariant } from '@material-ui/core';
+import { Divider, Drawer, Theme } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import { Profile, SidebarNav } from './components';
@@ -10,7 +10,7 @@ import useSelector from '../../../../hooks/useSelector';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { userSelector } from '../../../../store/selectors/user';
 import { PlainFunction, Page } from '../../../../types/interfaces';
-
+import { DrawerVariant } from '../../../../types/types';
 const useStyles = makeStyles((theme: Theme) => ({
 	drawer: {
 		width: 240,
