@@ -5,7 +5,9 @@ import {
   AppBar,
   Tabs,
   Tab,
-  Box
+  Box,
+  Hidden,
+  Grid
 } from '@material-ui/core';
 import React, { FC } from 'react';
 import PredictionGroupStageTable from '../PredictionGroupStageTable/PredictionGroupStageTable';
@@ -21,6 +23,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tabsRoot: {
     display: 'grid'
+  },
+  grid: {
+    padding: '16px'
+  },
+  stageName: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(1)
   }
 }));
 interface Props {
@@ -66,32 +75,51 @@ const GroupsPrediction: FC<Props> = props => {
   };
   return (
     <div>
-      <AppBar position="static" color="default" elevation={0}>
-        <Tabs
-            value={value}
-            onChange={handleChange}
-            className={classes.tabsRoot}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
-          >
-            {groups.map((group: GroupPrediction, index: number) => (
-              <Tab label={group.stageName} {...a11yProps(index)} />
-            ))}
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
+      <Hidden mdUp>
+        <AppBar position="static" color="default" elevation={0}>
+          <Tabs
+              value={value}
+              onChange={handleChange}
+              className={classes.tabsRoot}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="scrollable"
+              scrollButtons="auto"
+              aria-label="scrollable auto tabs example"
+            >
+              {groups.map((group: GroupPrediction, index: number) => (
+                <Tab label={group.stageName} {...a11yProps(index)} />
+              ))}
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+        {groups.map((group: GroupPrediction, index: number) => (
+          <TabPanel value={value} index={index}>
+            <PredictionGroupStageTable prediction={group.prediction} />
+          </TabPanel>
+        ))}
+      </SwipeableViews>
+    </Hidden>
+    <Hidden smDown>
+    <Grid container spacing={2} className={classes.grid}>
       {groups.map((group: GroupPrediction, index: number) => (
-        <TabPanel value={value} index={index}>
-          <PredictionGroupStageTable prediction={group.prediction} />
-        </TabPanel>
-      ))}
-    </SwipeableViews>
+					<Grid
+						item
+						key={index}
+						lg={4}
+						md={4}
+						xl={4}
+						xs={12}
+					>
+            <Typography variant="h6" className={classes.stageName}>{group.stageName}</Typography>
+						<PredictionGroupStageTable prediction={group.prediction}/>
+					</Grid>
+				))}
+			</Grid>
+    </Hidden>
   </div>
   );
 
