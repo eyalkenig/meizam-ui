@@ -14,7 +14,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   groupsLabel: {
-    marginRight: '35px'
+    flexGrow: 1
   },
   noPadding: {
     padding: '1px 0px 3px'

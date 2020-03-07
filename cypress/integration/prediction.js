@@ -11,10 +11,10 @@ describe('UserPrediction test', function() {
 
         cy.get('[data-cy=user-prediction-card]')
           .should('contain', 'Ekaterina Tankova')
-          .should('contain', 'Points: 102')
+          .should('contain', 'Points: 76')
           .should('contain', 'Position: 2 / 3')
-          .should('contain', 'France')
-        cy.get('[data-cy=user-prediction-card-winning-flag]').find('img').should('have.attr', 'src').should('include', 'fra.png')
+          .should('contain', 'Belgium')
+        cy.get('[data-cy=user-prediction-card-winning-flag]').find('img').should('have.attr', 'src').should('include', 'bel.png')
         cy.get('[data-cy=user-prediction-card-user-avatar]').find('img').should('have.attr', 'src').should('include', 'meizam-files/profile-pics')
     })
     it('should load different predictions', function() {
@@ -43,7 +43,7 @@ describe('UserPrediction test', function() {
         .should('contain', '1')
         .should('contain', 'Italy')
         .should('contain', '+1 Point')
-  })
+    })
     it('should show groups prediction on mobile', function() {
         cy.viewport('iphone-x')
         cy.visit('/prediction/12321')
@@ -74,5 +74,57 @@ describe('UserPrediction test', function() {
           .should('contain', '1')
           .should('contain', 'Belgium')
           .should('contain', '+1')
+    })
+    it('should show all knockout predictions on desktop', function() {
+      cy.visit('/prediction/12321')
+
+      cy.contains('Knockout')
+      cy.contains('67/135 Points').click()
+
+      cy.contains('Top 16')
+      cy.contains('Top 8')
+      cy.contains('Top 4')
+      cy.contains('Top 2')
+      cy.contains('Winner')
+      cy.get('[data-cy="stage Top 16"]')
+        .should('contain', 'Italy')
+        .should('contain', '+2 Points')
+      cy.get('[data-cy="stage Top 8"]')
+        .should('contain', 'Italy')
+        .should('contain', '+4 Points')
+      cy.get('[data-cy="stage Top 4"]')
+        .should('contain', 'Turkey')
+        .should('contain', '0 Points')
+      cy.get('[data-cy="stage Top 2"]')
+        .should('contain', 'Belgium')
+        .should('contain', '+8 Points')
+      cy.get('[data-cy="stage Winner"]')
+        .should('contain', 'Belgium')
+        .should('contain', '+10 Points')
+    })
+    it('should show knockout predictions on mobile', function() {
+      cy.viewport('iphone-x')
+      cy.visit('/prediction/12321')
+
+      cy.contains('Knockout')
+      cy.contains('67/135 Points').click()
+
+      cy.get('[data-cy="stage Top 16"]')
+        .should('contain', 'Italy')
+        .should('contain', '+2 Points')
+
+      cy.contains('Top 8').click()
+      cy.get('[data-cy="stage Top 8"]')
+        .should('contain', 'Italy')
+        .should('contain', '+4 Points')
+    })
+    it('should show potential points if predictions not decided', function() {
+      cy.visit('/prediction/1212')
+
+      cy.contains('67/135 Points').click()
+
+      cy.get('[data-cy="stage Top 2"]')
+        .should('contain', 'Germany')
+        .should('contain', '8 Points')
     })
 })

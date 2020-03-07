@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import GroupsPrediction from '../GroupsPrediction';
-import { GroupsStagePrediction } from '../../../../store/predictions/types';
+import StagePredictionTable from '../StagePredictionTable';
+import { StagePredictions } from '../../../../store/predictions/types';
 import PredictionSection from '../PredictionSection';
 
 interface Props {
-  groupsPrediction: GroupsStagePrediction
+  groupsPrediction: StagePredictions
 }
 const GroupsPredictionSection: FC<Props> = props => {
   const { groupsPrediction, ...rest } = props;
@@ -13,7 +13,7 @@ const GroupsPredictionSection: FC<Props> = props => {
     <PredictionSection header="Groups Stage"
                        label={`${groupsPrediction.gainedPoints}/${groupsPrediction.totalAvailablePoints} Points`}
                        progress={(groupsPrediction.gainedPoints/groupsPrediction.totalAvailablePoints)*100}>
-      <GroupsPrediction groups={groupsPrediction.prediction}/>
+      <StagePredictionTable stagePredictions={groupsPrediction.prediction} showPosition={true} />
     </PredictionSection>
   );
 };
