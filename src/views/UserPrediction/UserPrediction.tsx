@@ -8,6 +8,8 @@ import { predictionSelector } from '../../store/selectors/prediction';
 import { fetchPrediction } from '../../store/predictions/actions';
 import { RouterMatch } from '../../types/interfaces';
 import GroupsStats from './components/GroupsStats';
+import PredictionSection from './components/PredictionSection';
+import GroupsPrediction from './components/GroupsPrediction';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
