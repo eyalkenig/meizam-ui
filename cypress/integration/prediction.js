@@ -27,7 +27,25 @@ describe('UserPrediction test', function() {
         cy.get('[data-cy=user-prediction-card]')
           .should('contain', 'Cao Yu')
     })
-    it('should show groups prediction', function() {
+    it('should show all groups predictions on desktop', function() {
+      cy.visit('/prediction/12321')
+
+      cy.contains('Groups Stage')
+      cy.contains('9/24 Points').click()
+
+      cy.contains('Group A')
+      cy.contains('Group B')
+      cy.contains('Group C')
+      cy.contains('Group D')
+      cy.contains('Group E')
+      cy.contains('Group F')
+      cy.get('[data-cy="prediction-table-row"][data-position=1]')
+        .should('contain', '1')
+        .should('contain', 'Italy')
+        .should('contain', '+1 Point')
+  })
+    it('should show groups prediction on mobile', function() {
+        cy.viewport('iphone-x')
         cy.visit('/prediction/12321')
 
         cy.contains('Groups Stage')
