@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import {
-  Theme, Chip
+  Theme, Chip, Tooltip
 } from '@material-ui/core';
 import { FC } from 'react';
 import React from 'react';
@@ -63,10 +63,12 @@ const CorrectPredictionChip: FC<Props> = props => {
   return (
     <div className={classes.root}>
     {!isDecided &&
+    <Tooltip title="Potential" placement="left">
       <Chip color="primary" size="small" icon={<HourglassEmptyIcon fontSize="small" classes={{fontSizeSmall: classes.iconSmall}} />} label={getPointText(potentialPoints, false)} classes={{
         labelSmall: classes.labelSmall,
         colorPrimary: classes.potentialPoints
       }} />
+    </Tooltip>
     }
     {isCorrect && isDecided && points > 0 &&
       <Chip color="primary" size="small" icon={<DoneIcon fontSize="small" classes={{fontSizeSmall: classes.iconSmall}} />} label={getPointText(points, true)} classes={{
