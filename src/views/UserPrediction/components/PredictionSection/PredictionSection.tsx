@@ -10,13 +10,11 @@ import {
 } from '@material-ui/core';
 import React, { FC } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import GroupsPrediction from '../GroupsPrediction';
-import { GroupsStagePrediction } from '../../../../store/predictions/types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   groupsLabel: {
-    marginRight: '35px'
+    flexGrow: 1
   },
   noPadding: {
     padding: '1px 0px 3px'
@@ -32,34 +30,36 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 interface Props {
-  groupsPrediction: GroupsStagePrediction
+  header: string
+  label: string
+  progress: number
 }
-const GroupsStats: FC<Props> = props => {
-  const { groupsPrediction, ...rest } = props;
+const PredictionSection: FC<Props> = props => {
+  const { header, label, progress, children, ...rest } = props;
   const classes = useStyles();
 
-  return (groupsPrediction &&
+  return (
     <ExpansionPanel>
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
       >
         <Typography className={classes.groupsLabel}>
-        Groups Stage 
+        {header}
         </Typography>
-        <Chip label={`${groupsPrediction.gainedPoints}/${groupsPrediction.totalAvailablePoints} Points`}
+        <Chip label={label}
               variant="outlined"
               size="small"
               className={classes.chip}/>
       </ExpansionPanelSummary>
-      <LinearProgress value={(groupsPrediction.gainedPoints/groupsPrediction.totalAvailablePoints)*100} variant="determinate" classes={{
+      <LinearProgress value={progress} variant="determinate" classes={{
         barColorPrimary: classes.correctColor,
         colorPrimary: classes.incorrectColor
       }}/>
       <ExpansionPanelDetails className={classes.noPadding}>
-        <GroupsPrediction groups={groupsPrediction.prediction}/>
+        {children}
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
 };
 
-export default GroupsStats;
+export default PredictionSection;

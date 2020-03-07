@@ -7,11 +7,12 @@ import {
   Tab,
   Box,
   Hidden,
-  Grid
+  Grid,
+  GridSize
 } from '@material-ui/core';
 import React, { FC } from 'react';
 import PredictionGroupStageTable from '../PredictionGroupStageTable/PredictionGroupStageTable';
-import { GroupPrediction } from '../../../../store/predictions/types';
+import { StagePrediction } from '../../../../store/predictions/types';
 import SwipeableViews from 'react-swipeable-views';
 
 
@@ -33,10 +34,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 interface Props {
-  groups: GroupPrediction[]
+  stagePredictions: StagePrediction[]
+  showPosition?: boolean
+  tableInRowsMax?: GridSize
 }
-const GroupsPrediction: FC<Props> = props => {
-  const { groups, ...rest } = props;
+const StagePredictionTable: FC<Props> = props => {
+  const { stagePredictions, showPosition, tableInRowsMax,...rest } = props;
+  const gridRowsMax = tableInRowsMax ? tableInRowsMax : 4;
   const classes = useStyles();
 
   interface TabPanelProps {
@@ -87,7 +91,7 @@ const GroupsPrediction: FC<Props> = props => {
               scrollButtons="auto"
               aria-label="scrollable auto tabs example"
             >
-              {groups.map((group: GroupPrediction, index: number) => (
+              {stagePredictions.map((group: StagePrediction, index: number) => (
                 <Tab label={group.stageName} {...a11yProps(index)} />
               ))}
           </Tabs>
@@ -96,28 +100,32 @@ const GroupsPrediction: FC<Props> = props => {
           index={value}
           onChangeIndex={handleChangeIndex}
         >
-        {groups.map((group: GroupPrediction, index: number) => (
+        {stagePredictions.map((stage: StagePrediction, index: number) => (
           <TabPanel value={value} index={index}>
-            <PredictionGroupStageTable prediction={group.prediction} />
+            <div data-cy={`stage ${stage.stageName}`}>
+              <PredictionGroupStageTable prediction={stage.prediction} showPosition={showPosition}/>
+            </div>
           </TabPanel>
         ))}
       </SwipeableViews>
     </Hidden>
     <Hidden smDown>
-    <Grid container spacing={2} className={classes.grid}>
-      {groups.map((group: GroupPrediction, index: number) => (
+    <Grid container spacing={1} className={classes.grid}>
+      {stagePredictions.map((stage: StagePrediction, index: number) => (
 					<Grid
 						item
 						key={index}
-						lg={4}
-						md={4}
-						xl={4}
-						xs={12}
+						lg={gridRowsMax}
+						md={gridRowsMax}
+						xl={gridRowsMax}
+            xs={12}
 					>
-            <Typography variant="h6" className={classes.stageName}>{group.stageName}</Typography>
-						<PredictionGroupStageTable prediction={group.prediction}/>
+            <div data-cy={`stage ${stage.stageName}`}>
+              <Typography variant="h6" className={classes.stageName}>{stage.stageName}</Typography>
+              <PredictionGroupStageTable prediction={stage.prediction} showPosition={showPosition}/>
+            </div>
 					</Grid>
-				))}
+        ))}
 			</Grid>
     </Hidden>
   </div>
@@ -125,4 +133,4 @@ const GroupsPrediction: FC<Props> = props => {
 
 };
 
-export default GroupsPrediction;
+export default StagePredictionTable;

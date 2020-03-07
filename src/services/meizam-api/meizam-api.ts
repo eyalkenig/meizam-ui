@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Prediction, PredictionGroupStageRow, GroupPrediction } from '../../store/predictions/types';
+import { Prediction, TeamPrediction, StagePrediction, StagePredictions } from '../../store/predictions/types';
 
 export default class MeizamApi {
   static async FetchUserInfo(): Promise<any> {
@@ -47,50 +47,28 @@ export default class MeizamApi {
       })
     }
   }
-  static FetchPrediction(predictionId: number): Promise<Prediction> {
-    return new Promise((resolve, reject) => {
-      MeizamApi.get(`/Group/Prediction`, { predictionId: predictionId }).then(response => {
-        if (response.data.status != 'ok') {
-          console.log(response.data)
-          throw new Error(response.data.error)
-        }
-        const data = response.data.response;
-        resolve({
-          id: predictionId,
-          metadata: {
-            displayName: data.DisplayName,
-            points: data.Points,
-            position: data.Position,
-            profilePicture: data.ProfilePictureUrl,
-            winningTeam: data.WinningTeam,
-            winningTeamLogoUrl: data.WinningTeamLogoUrl,
-            groupId: data.GroupId,
-            totalGroupMembers: data.TotalGroupMembers,
-          },
-          groupsStage: {
-            prediction: data.GroupStage.Prediction.map((groupPrediction: any): GroupPrediction =>{
-              return {
-                stageName: groupPrediction.StageName,
-                prediction: groupPrediction.Prediction.map((team: any): PredictionGroupStageRow => {
-                  return {
-                    position: team.Position,
-                    teamId: team.TeamId,
-                    teamName: team.TeamName,
-                    flagUrl: team.FlagUrl,
-                    awardPoints: team.AwardPoints,
-                    isCorrect: team.IsCorrect
-                  }
-                })
-              }
-            }),
-            gainedPoints: data.GroupStage.GainedPoints,
-            totalAvailablePoints: data.GroupStage.TotalPotentialPoints
-          }
-        });
-      }).catch(error => {
-        reject(error)
-      })
-    });
+  static async FetchPrediction(predictionId: number): Promise<Prediction> {
+    const response = await MeizamApi.get(`/Group/Prediction`, { predictionId: predictionId });
+      if (response.data.status != 'ok') {
+        console.log(response.data)
+        throw new Error(response.data.error)
+      }
+      const data = response.data.response;
+      return {
+        id: predictionId,
+        metadata: {
+          displayName: data.DisplayName,
+          points: data.Points,
+          position: data.Position,
+          profilePicture: data.ProfilePictureUrl,
+          winningTeam: data.WinningTeam,
+          winningTeamLogoUrl: data.WinningTeamLogoUrl,
+          groupId: data.GroupId,
+          totalGroupMembers: data.TotalGroupMembers,
+        },
+        groupsStage: MeizamApi.adaptPredictionStage(data.GroupStage),
+        knockoutStage: MeizamApi.adaptPredictionStage(data.KnockoutStage)
+      };
   }
 
   private static post(path: string, body: any): Promise<any> {
@@ -116,4 +94,29 @@ export default class MeizamApi {
   private static getBaseUrl(): string | undefined {
     return process.env.REACT_APP_MEIZAM_API_BASE_HOST
   }
+
+  private static adaptPredictionStage(stage: any): StagePredictions {
+    return {
+      prediction: stage.Prediction.map((groupPrediction: any): StagePrediction => {
+        return {
+          stageName: groupPrediction.StageName,
+          prediction: groupPrediction.Prediction.map((team: any): TeamPrediction => {
+            return {
+              position: team.Position,
+              teamId: team.TeamId,
+              teamName: team.TeamName,
+              flagUrl: team.FlagUrl,
+              awardPoints: team.AwardPoints,
+              isCorrect: team.IsCorrect,
+              isDecided: team.IsDecided,
+              potentialPoints: team.PotentialPoints
+            }
+          })
+        };
+      }),
+      gainedPoints: stage.GainedPoints,
+      totalAvailablePoints: stage.TotalPotentialPoints
+    }
+  }
+
 }

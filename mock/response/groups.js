@@ -1,5 +1,6 @@
 var tableMock = require('../data/table')
 var predictionsMock = require('../data/predictions')
+var util = require('util');
 
 function groupTable(req, res) {
     console.log('[GET] /Group/Table')
@@ -39,12 +40,13 @@ function groupPrediction(req, res) {
           GroupId: prediction.GroupId,
           ...prediction.table,
           ...prediction.view,
-          ...prediction.groupStage
+          ...prediction.groupStage,
+          ...prediction.knockoutStage
         }
       }
     }
     console.log('[OK] 200')
-    console.log(response)
+    console.log(util.inspect(response, false, null))
   
     res.status(status).send(response)
     console.log()
