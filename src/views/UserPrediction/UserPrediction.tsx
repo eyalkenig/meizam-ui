@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { predictionSelector } from '../../store/selectors/prediction';
 import { fetchPrediction } from '../../store/predictions/actions';
 import { RouterMatch } from '../../types/interfaces';
-import GroupsStats from './components/GroupsStats';
+import GroupsStats from './components/GroupsPredictionSection';
 import PredictionSection from './components/PredictionSection';
 import GroupsPrediction from './components/GroupsPrediction';
 

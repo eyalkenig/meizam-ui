@@ -6,7 +6,7 @@ import PredictionSection from '../PredictionSection';
 interface Props {
   groupsPrediction: GroupsStagePrediction
 }
-const GroupsStats: FC<Props> = props => {
+const GroupsPredictionSection: FC<Props> = props => {
   const { groupsPrediction, ...rest } = props;
 
   return (
@@ -18,4 +18,4 @@ const GroupsStats: FC<Props> = props => {
   );
 };
 
-export default GroupsStats;
+export default GroupsPredictionSection;
