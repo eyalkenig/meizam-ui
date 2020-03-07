@@ -79,7 +79,7 @@ describe('UserPrediction test', function() {
       cy.visit('/prediction/12321')
 
       cy.contains('Knockout')
-      cy.contains('67/135 Points').click()
+      cy.contains('67/148 Points').click()
 
       cy.contains('Top 16')
       cy.contains('Top 8')
@@ -107,7 +107,7 @@ describe('UserPrediction test', function() {
       cy.visit('/prediction/12321')
 
       cy.contains('Knockout')
-      cy.contains('67/135 Points').click()
+      cy.contains('67/148 Points').click()
 
       cy.get('[data-cy="stage Top 16"]')
         .should('contain', 'Italy')
@@ -121,7 +121,7 @@ describe('UserPrediction test', function() {
     it('should show potential points if predictions not decided', function() {
       cy.visit('/prediction/1212')
 
-      cy.contains('67/135 Points').click()
+      cy.contains('0/148 Points').click()
 
       cy.get('[data-cy="stage Top 2"]')
         .should('contain', 'Germany')
