@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Theme, CircularProgress } from '@material-ui/core';
+import { Grid, Theme, CircularProgress, Typography, Button } from '@material-ui/core';
 
 import { UserProfile } from './components';
 import { useSelector, useDispatch } from 'react-redux';
 import { predictionSelector } from '../../store/selectors/prediction';
 import { fetchPrediction } from '../../store/predictions/actions';
 import { RouterMatch } from '../../types/interfaces';
+import GroupsPredictionSection from './components/GroupsPredictionSection';
+import KnockoutPredictionSection from './components/KnockoutPredictionSection';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -14,6 +16,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   alignCenter: {
     textAlign: 'center'
+  },
+  tryAgain: {
+    marginTop: '25px'
   }
 }));
 interface Props {
@@ -24,9 +29,10 @@ const UserPredictionContainer: FC<Props> = props => {
   const dispatch = useDispatch();
   const predictionView = useSelector(predictionSelector);
   const predictionId = props.match.params.predictionId;
-  if (!predictionView.fetching && predictionView.prediction.id != predictionId) {
-    dispatch(fetchPrediction(predictionId))
+  if (predictionView.prediction.id != predictionId) {
+    dispatch(fetchPrediction(predictionId));
   }
+
   return (
     <div className={classes.root}>
       <Grid
@@ -35,9 +41,9 @@ const UserPredictionContainer: FC<Props> = props => {
       >
         <Grid
           item
-          lg={4}
-          md={6}
-          xl={4}
+          lg={12}
+          md={12}
+          xl={12}
           xs={12}
         >
           {predictionView.fetching ?
@@ -45,16 +51,23 @@ const UserPredictionContainer: FC<Props> = props => {
             <CircularProgress/>
           </div>
           :
-          <UserProfile prediction={predictionView.prediction} />
+          predictionView.hasFetchingError ?
+          <div className={classes.alignCenter}>
+            <Typography>Oops.... Something went wrong</Typography>
+            <Button className={classes.tryAgain} variant="outlined" color="secondary" onClick={() => {dispatch(fetchPrediction(predictionId))}}>
+              Try Again
+            </Button>
+          </div>
+          :
+          <div>
+            {predictionView.prediction.metadata &&
+              <UserProfile metadata={predictionView.prediction.metadata} />}
+            {predictionView.prediction.groupsStage &&
+              <GroupsPredictionSection groupsPrediction={predictionView.prediction.groupsStage} />}
+            {predictionView.prediction.knockoutStage &&
+              <KnockoutPredictionSection knockoutPrediction={predictionView.prediction.knockoutStage} />}
+          </div>
           }
-        </Grid>
-        <Grid
-          item
-          lg={8}
-          md={6}
-          xl={8}
-          xs={12}
-        >
         </Grid>
       </Grid>
     </div>

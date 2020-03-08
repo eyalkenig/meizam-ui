@@ -28,13 +28,38 @@ export interface PredictionMetadata {
     totalGroupMembers: number;
 }
 
+
+export interface TeamPrediction {
+    position: number;
+    teamId: number;
+    teamName: string;
+    flagUrl: string;
+    awardPoints: number;
+    isCorrect: boolean;
+    isDecided: boolean;
+    potentialPoints: number;
+}
+export interface StagePrediction {
+    stageName: string;
+    prediction: TeamPrediction[];
+}
+
+export interface StagePredictions {
+   prediction: StagePrediction[];
+   gainedPoints: number;
+   totalAvailablePoints: number;
+}
+
 export interface Prediction {
     id: number;
     metadata?: PredictionMetadata;
+    groupsStage?: StagePredictions;
+    knockoutStage?: StagePredictions;
 }
 
 export interface PredictionState {
     prediction: Prediction;
     fetching: boolean;
+    hasFetchingError: boolean;
 }
 

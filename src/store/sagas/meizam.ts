@@ -39,6 +39,8 @@ export function* FetchPrediction(action: FetchPredictionAction) {
        yield put({type: NOT_LOGGED_IN_EXCEPTION})
        return
      }
-     yield put({type: FETCH_PREDICTION_FAILURE, payload: error})
+     console.log('failed to fetch prediction:');
+     console.log(error);
+     yield put({type: FETCH_PREDICTION_FAILURE, payload: error.message})
   }
 }
