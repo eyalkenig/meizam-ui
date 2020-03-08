@@ -10,7 +10,7 @@ import useSelector from '../../../../hooks/useSelector';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { userSelector } from '../../../../store/selectors/user';
 import { PlainFunction, Page } from '../../../../types/interfaces';
-import { DrawerVariant } from '../../../../types/types';
+
 const useStyles = makeStyles((theme: Theme) => ({
 	drawer: {
 		width: 240,
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface Props {
 	onClose: PlainFunction;
 	open: boolean;
-	variant: DrawerVariant;
+	variant: 'permanent' | 'persistent' | 'temporary';
 }
 
 const Sidebar: FC<Props> = props => {
