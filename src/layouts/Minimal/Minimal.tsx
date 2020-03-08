@@ -1,31 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode, FC } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    height: '100%'
-  },
-  content: {
-    height: '100%'
-  }
+	root: {
+		height: '100%'
+	},
+	content: {
+		height: '100%'
+	}
 }));
 
-const Minimal = (props: any) => {
-  const { children } = props;
+interface Props {
+	children: ReactNode;
+	className: string;
+}
 
-  const classes = useStyles();
+const Minimal: FC<Props> = props => {
+	const { children } = props;
 
-  return (
-    <div className={classes.root}>
-      <main className={classes.content}>{children}</main>
-    </div>
-  );
-};
+	const classes = useStyles();
 
-Minimal.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string
+	return (
+		<div className={classes.root}>
+			<main className={classes.content}>{children}</main>
+		</div>
+	);
 };
 
 export default Minimal;
