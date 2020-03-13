@@ -42,7 +42,10 @@
 		"dev": "concurrently \"yarn meizamApi \" \"yarn start\" \"yarn cypress:open\" "
 	},
 	"eslintConfig": {
-		"extends": "react-app"
+		"extends": [
+			"react-app",
+			"plugin:cypress/recommended"
+		]
 	},
 	"browserslist": {
 		"production": [
@@ -61,6 +64,7 @@
 		"concurrently": "^5.1.0",
 		"cors": "^2.8.5",
 		"cypress": "^4.0.2",
+		"eslint-plugin-cypress": "^2.10.3",
 		"redux-devtools": "^3.5.0"
 	}
 }
