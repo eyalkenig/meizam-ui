@@ -1,30 +1,23 @@
-import React from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import React from "react";
+import { Switch, Redirect } from "react-router-dom";
 
-import { RouteWithLayout } from './components';
-import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
+import { RouteWithLayout } from "./components";
+import { Main as MainLayout, Minimal as MinimalLayout } from "./layouts";
 
 import {
   Feed as FeedView,
   NotFound as NotFoundView,
   GroupTable as GroupTableView,
   UserPrediction as UserPredictionView,
-  SignIn as SignInView
-} from './views';
+  SignIn as SignInView,
+  CreateGroup as CreateGroupView
+} from "./views";
 
 const Routes = () => {
   return (
     <Switch>
-      <Redirect
-        exact
-        from="/"
-        to="/feed"
-      />
-      <RouteWithLayout
-        component={FeedView}
-        layout={MainLayout}
-        path="/feed"
-      />
+      <Redirect exact from="/" to="/feed" />
+      <RouteWithLayout component={FeedView} layout={MainLayout} path="/feed" />
       <RouteWithLayout
         component={GroupTableView}
         layout={MainLayout}
@@ -39,6 +32,11 @@ const Routes = () => {
         component={UserPredictionView}
         layout={MainLayout}
         path="/prediction/:predictionId"
+      />
+      <RouteWithLayout
+        component={CreateGroupView}
+        layout={MainLayout}
+        path="/create-group"
       />
       <RouteWithLayout
         component={NotFoundView}
