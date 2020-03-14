@@ -9,10 +9,6 @@ export function* FetchUserInfo() {
      const data = yield call(MeizamApi.FetchUserInfo)
      yield put({type: FETCH_USER_INFO_SUCCESS, payload: data})
   } catch (error) {
-     if (error.message == 'must be logged in') {
-        yield put({type: NOT_LOGGED_IN_EXCEPTION})
-        return
-     }
      yield put({type: FETCH_USER_INFO_FAILURE, payload: error})
   }
 }
@@ -22,10 +18,6 @@ export function* FetchGroupTable(action: FetchGroupTableAction) {
      const data = yield call(MeizamApi.FetchGroupTable, action.payload)
      yield put({type: FETCH_GROUP_TABLE_SUCCESS, payload: data})
   } catch (error) {
-     if (error.message == 'must be logged in') {
-       yield put({type: NOT_LOGGED_IN_EXCEPTION})
-       return
-     }
      yield put({type: FETCH_GROUP_TABLE_FAILURE, payload: error})
   }
 }
@@ -35,10 +27,6 @@ export function* FetchPrediction(action: FetchPredictionAction) {
      const data = yield call(MeizamApi.FetchPrediction, action.payload)
      yield put({type: FETCH_PREDICTION_SUCCESS, payload: data})
   } catch (error) {
-     if (error.message == 'must be logged in') {
-       yield put({type: NOT_LOGGED_IN_EXCEPTION})
-       return
-     }
      console.log('failed to fetch prediction:');
      console.log(error);
      yield put({type: FETCH_PREDICTION_FAILURE, payload: error.message})

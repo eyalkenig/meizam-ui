@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosWrapper  from '../axios-wrapper'
 import { Prediction, TeamPrediction, StagePrediction, StagePredictions } from '../../store/predictions/types';
 
 export default class MeizamApi {
@@ -73,12 +73,12 @@ export default class MeizamApi {
 
   private static post(path: string, body: any): Promise<any> {
     const baseUrl = MeizamApi.getBaseAndSetCredentials()
-    return axios.post(`${baseUrl}${path}`, body)
+    return axiosWrapper.post(`${baseUrl}${path}`, body)
   }
 
   private static get(path: string, params: any): Promise<any> {
     const baseUrl = MeizamApi.getBaseAndSetCredentials()
-    return axios.get(`${baseUrl}${path}`, { params })
+    return axiosWrapper.get(`${baseUrl}${path}`, { params })
   }
 
   private static getBaseAndSetCredentials(): string | undefined {
@@ -86,7 +86,7 @@ export default class MeizamApi {
     if (baseUrl && baseUrl.indexOf('localhost') >= 0) {
       console.log('running on localhost')
     } else {
-      axios.defaults.withCredentials = true;
+      axiosWrapper.defaults.withCredentials = true;
     }
     return baseUrl
   }
