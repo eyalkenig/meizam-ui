@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
@@ -6,21 +6,23 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
 import Routes from './Routes';
 import { fetchUserInfo } from './store/user/actions';
-import { store, browserHistory } from './store'
+import { browserHistory } from './store'
+import { useDispatch } from 'react-redux';
 
 
-export default class App extends Component {
-  componentDidMount() {
-    store.dispatch(fetchUserInfo())
-  }
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUserInfo());
+  }, [dispatch]);
 
-  render() {
-    return (
-        <ThemeProvider theme={theme}>
-          <Router history={browserHistory}>
-            <Routes />
-          </Router>
-        </ThemeProvider>
-    );
-  }
+  return (
+    <ThemeProvider theme={theme}>
+      <Router history={browserHistory}>
+        <Routes />
+      </Router>
+    </ThemeProvider>
+  );
 }
+
+export default App
