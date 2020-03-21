@@ -10,8 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
+    - name: Notify slack starting deploy
+      if: success()
+      id: slackNotify
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_DEEEPLOY_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: releases
+        status: STARTING
+        color: warning
     - name: Yarn Install
       run: |
         yarn install
@@ -28,3 +36,22 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
         SOURCE_DIR: "build"
+    - name: Notify slack on deploy success
+      if: success()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_DEEEPLOY_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        message_id: ${{ steps.slackNotify.outputs.message_id }}
+        channel: releases
+        status: SUCCESS
+        color: good
+    - name: Notify slack on deploy failure
+      if: failure()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_DEEEPLOY_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: releases
+        status: FAILED
+        color: danger
