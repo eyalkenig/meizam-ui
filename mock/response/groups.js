@@ -6,14 +6,22 @@ function groupTable(req, res) {
     console.log('[GET] /Group/Table')
     console.log('params:')
     console.log(req.query)
-    const status = 200
     const groupId = parseInt(req.query.groupId, 10)
-    const response = {
-        status: 'ok',
-        response: {
-            ID: req.query.groupId,
-            ...tableMock.getTable(groupId)
-        }
+    const status = 200
+    let response = {}
+    if (groupId === 666) {
+      response = {
+        status: 'error',
+        error: "must be logged in"
+      }
+    } else {
+      response = {
+          status: 'ok',
+          response: {
+              ID: req.query.groupId,
+              ...tableMock.getTable(groupId)
+          }
+      }
     }
     console.log('[OK] 200')
     console.log(response)
