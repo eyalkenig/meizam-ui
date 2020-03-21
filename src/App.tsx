@@ -6,23 +6,22 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
 import Routes from './Routes';
 import { fetchUserInfo } from './store/user/actions';
-import { browserHistory } from './store'
+import { browserHistory } from './store';
 import { useDispatch } from 'react-redux';
 
-
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUserInfo());
-  }, [dispatch]);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchUserInfo());
+	}, [dispatch]);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Router history={browserHistory}>
-        <Routes />
-      </Router>
-    </ThemeProvider>
-  );
-}
+	return (
+		<ThemeProvider theme={theme}>
+			<Router history={browserHistory}>
+				<Routes />
+			</Router>
+		</ThemeProvider>
+	);
+};
 
-export default App
+export default App;
