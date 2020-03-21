@@ -82,17 +82,7 @@ export default class MeizamApi {
   }
 
   private static getBaseAndSetCredentials(): string | undefined {
-    const baseUrl = MeizamApi.getBaseUrl()
-    if (baseUrl && baseUrl.indexOf('localhost') >= 0) {
-      console.log('running on localhost')
-    } else {
-      axiosWrapper.defaults.withCredentials = true;
-    }
-    return baseUrl
-  }
-
-  private static getBaseUrl(): string | undefined {
-    return process.env.REACT_APP_MEIZAM_API_BASE_HOST
+    return process.env.REACT_APP_MEIZAM_API_BASE_HOST;
   }
 
   private static adaptPredictionStage(stage: any): StagePredictions {
