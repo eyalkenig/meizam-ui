@@ -49,6 +49,7 @@ const GroupTable: FC<Props> = props => {
 	const currentGroup = userGroups.find(
 		(x: UserGroupState) => x.groupId.toString() === tableView.selectedGroupId.toString()
 	);
+
 	return (
 		<div className={classes.root}>
 			<Typography className={classes.center} variant='h2'>
@@ -58,10 +59,16 @@ const GroupTable: FC<Props> = props => {
 				dispatch(searchGroupTable(text))
 			}} />
 			<div className={classes.content}>
+			{ 
+				filteredUsersTable.length === 0 ?
+				<Typography align='center' paragraph>Oops, no matching users</Typography>
+				:
 				<UsersTable users={filteredUsersTable}
 							onUserClicked={(predictionId: number) => {
 								history.push(`/prediction/${predictionId}`);
-							}} />
+							}} 
+				/>
+			}
 			</div>
 		</div>
 	);
