@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { UsersToolbar, UsersTable } from './components';
-import { Theme, Typography } from '@material-ui/core';
+import { Theme, Typography, CircularProgress } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { fetchGroupTable, searchGroupTable } from '../../store/groups/actions';
 import { UserGroupState } from '../../store/user/types';
@@ -59,16 +59,24 @@ const GroupTable: FC<Props> = props => {
 				dispatch(searchGroupTable(text))
 			}} />
 			<div className={classes.content}>
-			{ 
-				filteredUsersTable.length === 0 ?
-				<Typography align='center' paragraph>Oops, no matching users</Typography>
-				:
-				<UsersTable users={filteredUsersTable}
-							onUserClicked={(predictionId: number) => {
-								history.push(`/prediction/${predictionId}`);
-							}} 
-				/>
-			}
+				{
+					groups.fetching ?
+					<div className={classes.center}>
+						<CircularProgress/>
+					</div>
+					:
+					groups.hasFetchingError ?
+					<Typography align='center' paragraph>Oops.... Something went wrong</Typography>
+					:
+					filteredUsersTable.length === 0 ?
+					<Typography align='center' paragraph>Oops, no matching users</Typography>	
+					:
+					<UsersTable users={filteredUsersTable}
+								onUserClicked={(predictionId: number) => {
+									history.push(`/prediction/${predictionId}`);
+								}} 
+					/>
+				}
 			</div>
 		</div>
 	);
