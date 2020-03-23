@@ -56,5 +56,7 @@ export interface GroupsState {
     groups: Group[];
     tableView: TableView;
     searchText: string;
+    fetching: boolean;
+    hasFetchingError: boolean;
 }
 
