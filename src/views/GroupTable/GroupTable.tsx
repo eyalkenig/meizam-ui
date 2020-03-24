@@ -68,7 +68,7 @@ const GroupTable: FC<Props> = props => {
 					groups.hasFetchingError ?
 					<Typography align='center' paragraph>Oops.... Something went wrong</Typography>
 					:
-					filteredUsersTable.length === 0 ?
+					filteredUsersTable.length === 0 && groups.searchText.length > 0 ?
 					<Typography align='center' paragraph>Oops, no matching users</Typography>	
 					:
 					<UsersTable users={filteredUsersTable}

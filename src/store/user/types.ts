@@ -1,3 +1,5 @@
+import { TableRow } from '../groups/types';
+
 export const FETCH_USER_INFO = 'FETCH_USER_INFO'
 export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCCESS'
 export const FETCH_USER_INFO_FAILURE = 'FETCH_USER_INFO_FAILURE'
@@ -20,15 +22,25 @@ interface NotLoggedInExceptionAction {
 export type UserActionTypes = FetchUserInfoAction | FetchUserInfoSuccessAction | FetchUserInfoFailureAction | NotLoggedInExceptionAction
 
 export interface UserPrediction {
-    id: number;
+    userId: number;
+    predictionId: number;
+    displayName: string;
+    position: number;
+    points: number;
+    profilePictureUrl: string;
+    winningTeamLogoUrl: string;
 }
+
 export interface UserGroupState {
     groupId: number;
     points: number;
     position: number;
     displayName: string;
     totalMembers: number;
+    pictureUrl: string;
     prediction?: UserPrediction;
+    firstPlace?: TableRow;
+    surroundings?: TableRow[];
 }
 
 export interface UserState {

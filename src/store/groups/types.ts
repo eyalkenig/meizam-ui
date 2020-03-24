@@ -39,7 +39,6 @@ export interface TableRow {
     winningTeamLogoUrl: string;
 }
 
-
 export interface Group {
     id: number;
     displayName: string;

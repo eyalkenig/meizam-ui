@@ -1,4 +1,5 @@
 import axiosWrapper  from './axios-wrapper'
+import { TableRow } from '../../store/groups/types';
 import { Prediction, TeamPrediction, StagePrediction, StagePredictions } from '../../store/predictions/types';
 
 export default class MeizamApi {
@@ -20,7 +21,11 @@ export default class MeizamApi {
           position: group.Position,
           points: group.Points,
           totalMembers: group.TotalMembers,
-          pictureUrl: group.PictureUrl
+          pictureUrl: group.PictureUrl,
+          firstPlace: MeizamApi.mapUserPredictionInfo(group.FirstPlace),
+          surroundings: group.Surroundings ? group.Surroundings.map((surrounding: any) => {
+            return MeizamApi.mapUserPredictionInfo(surrounding);
+          }) : null
         }
       })
     }
@@ -92,6 +97,22 @@ export default class MeizamApi {
       }),
       gainedPoints: stage.GainedPoints,
       totalAvailablePoints: stage.TotalPotentialPoints
+    }
+  }
+
+  private static mapUserPredictionInfo(source : any) : any {
+    if (source) {
+      return {
+        id: source.UserId,
+        predictionId: source.PredictionId,
+        name: source.DisplayName,
+        position: source.Position,
+        points: source.Points,
+        profilePictureUrl: source.ProfilePictureUrl,
+        winningTeamLogoUrl: source.WinningTeamLogoUrl,
+      }
+    } else {
+      return null;
     }
   }
 

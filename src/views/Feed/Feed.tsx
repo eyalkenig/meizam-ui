@@ -1,57 +1,57 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Theme } from '@material-ui/core';
-import { UserInGroupBadge } from './components';
 import { useDispatch } from 'react-redux';
 import { useSelector } from '../../hooks';
 import { UserGroupState } from '../../store/user/types';
-import { fetchGroupTable } from '../../store/groups/actions';
 import { useHistory } from 'react-router-dom';
-import { userGroupsSelector } from '../../store/selectors/user';
+import { userGroupsSelector, userSelector } from '../../store/selectors/user';
 import { PlainFunction } from '../../types/interfaces';
+import UserTableRow from '../GroupTable/components/UsersTable/UserTableRow'; 
+import UserGroupTable from './components/UserGroupTable';
+
+import { 
+	Theme,
+	Typography,
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
-		padding: theme.spacing(4)
+		padding: theme.spacing(4),
 	},
-	feedGroup: {}
+	headline: {
+		marginBottom: 30,
+	},
 }));
 
-interface IProps {
+interface Props {
 	onGroupClicked: PlainFunction;
 }
 
-const Feed: FC<IProps> = props => {
+const Feed: FC<Props> = props => {
 	const dispatch = useDispatch();
 	const classes = useStyles();
 	const history = useHistory();
+	const user = useSelector(userSelector);
 	const groups = useSelector(userGroupsSelector);
+
+	const handleUserNameClicked = (predictionId: number) => {
+		history.push(`/prediction/${predictionId}`);
+	};
+	
+	const showTable = (tableId: number) => {
+		history.push(`/table/${tableId}`);
+	};
 
 	return (
 		<div className={classes.root}>
-			<Grid container spacing={4}>
-				{groups.map((group: UserGroupState, index: number) => (
-					<Grid
-						item
-						key={index}
-						lg={3}
-						sm={6}
-						xl={3}
-						xs={12}
-						data-cy='feed-group'
-					>
-						<UserInGroupBadge
-							displayName={group.displayName}
-							groupId={group.groupId}
-							position={group.position}
-							totalMembers={group.totalMembers}
-							onGroupClicked={() => {
-								history.push(`/table/${group.groupId}`);
-							}}
-						/>
-					</Grid>
-				))}
-			</Grid>
+			<Typography className={classes.headline} variant="h5">Your Groups</Typography>
+			<UserGroupTable 
+				groups={groups} 
+				user={user} 
+				groupNameClicked={showTable} 
+				showTableClicked={showTable} 
+				userNameClicked={handleUserNameClicked}
+			/>
 		</div>
 	);
 };
