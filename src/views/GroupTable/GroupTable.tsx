@@ -12,6 +12,7 @@ import { fetchPrediction } from '../../store/predictions/actions';
 import { useHistory } from 'react-router-dom';
 import { RouterMatch } from '../../types/interfaces';
 import { TableRow } from '../../store/groups/types';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -66,10 +67,10 @@ const GroupTable: FC<Props> = props => {
 					</div>
 					:
 					groups.hasFetchingError ?
-					<Typography align='center' paragraph>Oops.... Something went wrong</Typography>
+					<ErrorMessage errorMessage="Oops... something went wrong" showTryAgain={false}/>
 					:
 					filteredUsersTable.length === 0 && groups.searchText.length > 0 ?
-					<Typography align='center' paragraph>Oops, no matching users</Typography>	
+					<ErrorMessage errorMessage="Oops... no matching users" showTryAgain={false}/>
 					:
 					<UsersTable users={filteredUsersTable}
 								onUserClicked={(predictionId: number) => {
