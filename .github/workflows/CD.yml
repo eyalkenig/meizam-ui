@@ -24,6 +24,8 @@ jobs:
       run: |
         yarn install
     - name: Yarn Build
+      env:
+        CI: ""
       run: |
         yarn build:prod
     - name: Deploy to S3
