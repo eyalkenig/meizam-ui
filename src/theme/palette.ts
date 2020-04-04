@@ -22,7 +22,7 @@ export default {
     contrastText: white,
     dark: colors.green[900],
     main: colors.green[600],
-    light: colors.green[400]
+    light: colors.green[100]
   },
   info: {
     contrastText: white,
@@ -45,7 +45,7 @@ export default {
   text: {
     primary: colors.blueGrey[900],
     secondary: colors.blueGrey[600],
-    link: colors.blue[600]
+    link: colors.blue[600],
   },
   background: {
     default: '#F4F6F8',

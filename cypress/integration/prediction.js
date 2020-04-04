@@ -1,24 +1,24 @@
 describe('UserPrediction test', function() {
     it('should go to prediction page from table', function() {
-        cy.visit('/table')
+        cy.visit('/table/12')
 
         cy.contains('Ekaterina Tankova').click()
 
-        cy.url().should('include', '/prediction/12321')
+        cy.url().should('include', '/prediction/62126')
     })
     it('should load prediction info', function() {
-        cy.visit('/prediction/12321')
+        cy.visit('/prediction/62126')
 
         cy.get('[data-cy=user-prediction-card]')
           .should('contain', 'Ekaterina Tankova')
-          .should('contain', 'Points: 76')
-          .should('contain', 'Position: 2 / 3')
+          .should('contain', 'Points: 120')
+          .should('contain', 'Position: 1 / 4')
           .should('contain', 'Belgium')
         cy.get('[data-cy=user-prediction-card-winning-flag]').find('img').should('have.attr', 'src').should('include', 'bel.png')
         cy.get('[data-cy=user-prediction-card-user-avatar]').find('img').should('have.attr', 'src').should('include', 'meizam-files/profile-pics')
     })
     it('should load different predictions', function() {
-        cy.visit('/table')
+        cy.visit('/table/12')
         cy.contains('Ekaterina Tankova').click()
         cy.go('back')
 
@@ -31,7 +31,7 @@ describe('UserPrediction test', function() {
       cy.visit('/prediction/12321')
 
       cy.contains('Groups Stage')
-      cy.contains('9/24 Points').click()
+      cy.contains('12/24 Points').click()
 
       cy.contains('Group A')
       cy.contains('Group B')
@@ -49,7 +49,7 @@ describe('UserPrediction test', function() {
         cy.visit('/prediction/12321')
 
         cy.contains('Groups Stage')
-        cy.contains('9/24 Points').click()
+        cy.contains('12/24 Points').click()
 
         cy.get('[data-cy="prediction-table-row"][data-position=1]')
           .should('contain', '1')
@@ -119,7 +119,7 @@ describe('UserPrediction test', function() {
         .should('contain', '+4 Points')
     })
     it('should show potential points if predictions not decided', function() {
-      cy.visit('/prediction/1212')
+      cy.visit('/prediction/3537')
 
       cy.contains('0/148 Points').click()
 

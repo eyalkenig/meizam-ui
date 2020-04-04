@@ -129,15 +129,15 @@ const predictions = [
     GroupId: 12,
     table: {
       UserId: 123,
-      PredictionId: 12321,
+      PredictionId: 62126,
       DisplayName: 'Ekaterina Tankova',
-      Position: 2,
-      Points: 76,
+      Position: 1,
+      Points: 120,
       ProfilePictureUrl: 'https://s3.us-east-2.amazonaws.com/meizam-files/profile-pics/2110-de1b0eb2-1fd8-4f62-9ea5-596cdfbc820d',
       WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
     },
     view: {
-      TotalGroupMembers: 3,
+      TotalGroupMembers: 4,
       WinningTeam: 'Belgium'
     },
     groupStage: {
@@ -150,7 +150,7 @@ const predictions = [
     knockoutStage: {
       KnockoutStage: {
         Prediction: knockoutPrediction,
-        GainedPoints: 67,
+        GainedPoints: 120,
         TotalPotentialPoints: 148
       }
     }
@@ -164,11 +164,11 @@ const predictions = [
       Position: 3,
       Points: 70,
       ProfilePictureUrl: null,
-      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ger.png'
     },
     view: {
-      TotalGroupMembers: 3,
-      WinningTeam: 'Italy'
+      TotalGroupMembers: 4,
+      WinningTeam: 'Germany'
     },
     groupStage: {
       GroupStage: {
@@ -181,7 +181,7 @@ const predictions = [
       KnockoutStage: {
         Prediction: knockoutPrediction,
         GainedPoints: 67,
-        TotalPotentialPoints: 135
+        TotalPotentialPoints: 148
       }
     }
   },
@@ -189,15 +189,15 @@ const predictions = [
     GroupId: 12,
     table: {  
       UserId: 621,
-      PredictionId: 62126,
+      PredictionId: 12321,
       DisplayName: 'Alexa Richardson',
-      Position: 1,
-      Points: 120,
+      Position: 2,
+      Points: 76,
       ProfilePictureUrl: null,
       WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
     },
     view: {
-      TotalGroupMembers: 3,
+      TotalGroupMembers: 4,
       WinningTeam: 'Italy'
     },
     groupStage: {
@@ -211,24 +211,396 @@ const predictions = [
       KnockoutStage: {
         Prediction: knockoutPrediction,
         GainedPoints: 67,
-        TotalPotentialPoints: 135
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 12,
+    table: {  
+      UserId: 125,
+      PredictionId: 12423,
+      DisplayName: 'Yao Ming',
+      Position: 4,
+      Points: 62,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+    },
+    view: {
+      TotalGroupMembers: 4,
+      WinningTeam: 'Italy'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 12,
+        TotalPotentialPoints: 24
+      }
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 50,
+        TotalPotentialPoints: 148
       }
     }
   },
   {
     GroupId: 125,
     table: {  
-      UserId: 621,
-      PredictionId: 1212,
-      DisplayName: 'Ekaterina Tankova',
+      UserId: 56,
+      PredictionId: 3526,
+      DisplayName: "עידן עמדי",
       Position: 1,
-      Points: 10,
-      ProfilePictureUrl: 'https://s3.us-east-2.amazonaws.com/meizam-files/profile-pics/2110-de1b0eb2-1fd8-4f62-9ea5-596cdfbc820d'
+      Points: 150,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/isr.png'
     },
     view: {
-      TotalGroupMembers: 1,
+      TotalGroupMembers: 12,
+      WinningTeam: 'Israel',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/isr.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 20,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 130,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 57,
+      PredictionId: 3527,
+      DisplayName: "Derek Sharp",
+      Position: 2,
+      Points: 141,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Belgium',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 21,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 120,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 58,
+      PredictionId: 3528,
+      DisplayName: "Anthony Parker",
+      Position: 3,
+      Points: 139,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
       WinningTeam: 'Italy',
       WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 21,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 118,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 59,
+      PredictionId: 3529,
+      DisplayName: "Maceo Baston",
+      Position: 4,
+      Points: 102,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Belgium',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 11,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 91,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 60,
+      PredictionId: 3530,
+      DisplayName: "Šarūnas Jasikevičius",
+      Position: 5,
+      Points: 80,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Belgium',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 11,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 69,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 123,
+      PredictionId: 3531,
+      DisplayName: 'Ekaterina Tankova',
+      Position: 6,
+      Points: 52,
+      ProfilePictureUrl: 'https://s3.us-east-2.amazonaws.com/meizam-files/profile-pics/2110-de1b0eb2-1fd8-4f62-9ea5-596cdfbc820d',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Italy',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/ita.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 12,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 40,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 61,
+      PredictionId: 3532,
+      DisplayName: "Gur Shelef",
+      Position: 7,
+      Points: 51,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Belgium',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 5,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 46,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 62,
+      PredictionId: 3533,
+      DisplayName: "Nikola Vujčić",
+      Position: 8,
+      Points: 49,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/cro.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Croatia',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/cro.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 9,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 40,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 63,
+      PredictionId: 3534,
+      DisplayName: "Tal Burstein",
+      Position: 9,
+      Points: 40,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/isr.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Israel',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/isr.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 5,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 35,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 64,
+      PredictionId: 3535,
+      DisplayName: "Pini Gershon",
+      Position: 10,
+      Points: 31,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Belgium',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 3,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 28,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 65,
+      PredictionId: 3536,
+      DisplayName: "Deni Avdija",
+      Position: 11,
+      Points: 28,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/srb.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Serbia',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/srb.png'
+    },
+    groupStage: {
+      GroupStage: {
+        Prediction: groupPrediction,
+        GainedPoints: 8,
+        TotalPotentialPoints: 24
+      },
+    },
+    knockoutStage: {
+      KnockoutStage: {
+        Prediction: knockoutPrediction,
+        GainedPoints: 20,
+        TotalPotentialPoints: 148
+      }
+    }
+  },
+  {
+    GroupId: 125,
+    table: {  
+      UserId: 66,
+      PredictionId: 3537,
+      DisplayName: "Shimon Mizrahi",
+      Position: 12,
+      Points: 0,
+      ProfilePictureUrl: null,
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
+    },
+    view: {
+      TotalGroupMembers: 12,
+      WinningTeam: 'Belgium',
+      WinningTeamLogoUrl: 'http://img.fifa.com/images/flags/4/bel.png'
     },
     groupStage: {
       GroupStage: {
@@ -244,7 +616,7 @@ const predictions = [
         TotalPotentialPoints: 148
       }
     }
-  }
+  },
 ]
 function getPrediction(predictionId) {
   for (let i=0;i<predictions.length;i++) {
