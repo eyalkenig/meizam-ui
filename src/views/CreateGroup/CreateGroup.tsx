@@ -7,8 +7,10 @@ import CreateGroupForm from './components/CreateGroupForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
-		padding: theme.spacing(4)
-	}
+		padding: theme.spacing(4),
+		display: 'flex',
+		flexDirection: 'column',
+	},
 }));
 
 const CreateGroup: FC = () => {
