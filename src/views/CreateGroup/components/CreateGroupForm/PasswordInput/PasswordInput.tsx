@@ -8,7 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { FieldInputProps } from 'formik';
+import { useField } from 'formik';
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -20,26 +20,29 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-interface Props extends FieldInputProps<unknown> {
-	touched?: boolean;
-	error?: string;
+interface Props {
+	label: string;
+	name: string;
 }
 
-const PasswordInput: FC<Props> = ({ error, touched, ...props }) => {
+const PasswordInput: FC<Props> = ({ label, ...props }) => {
 	const [showPassword, setShowPassword] = useState(false);
+	const [field, meta] = useField(props);
 	const classes = useStyles();
+
 	return (
 		<div className={classes.container}>
 			<FormControl
 				variant='outlined'
-				error={!!(touched && error)}
+				error={!!(meta.touched && meta.error)}
 				className={classes.input}
 			>
-				<InputLabel htmlFor='outlined-adornment-password'>Password</InputLabel>
+				<InputLabel htmlFor='outlined-adornment-password'>{label}</InputLabel>
 				<OutlinedInput
 					id='outlined-adornment-password'
-					type={showPassword ? 'text' : 'password'}
 					{...props}
+					{...field}
+					type={showPassword ? 'text' : 'password'}
 					endAdornment={
 						<InputAdornment position='end'>
 							<IconButton
@@ -54,7 +57,7 @@ const PasswordInput: FC<Props> = ({ error, touched, ...props }) => {
 					labelWidth={70}
 				/>
 				<FormHelperText id='outlined-weight-helper-text'>
-					{touched && error}
+					{meta.touched && meta.error}
 				</FormHelperText>
 			</FormControl>
 		</div>

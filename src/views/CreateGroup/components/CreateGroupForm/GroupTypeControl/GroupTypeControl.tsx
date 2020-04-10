@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { Theme } from '@material-ui/core';
-import { PlainFunction } from '../../../../../types/interfaces';
+import { useField } from 'formik';
 const useStyles = makeStyles((theme: Theme) => ({
 	container: {
 		display: 'flex',
@@ -13,24 +13,23 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-	isPublic: boolean;
-	setPublic: PlainFunction;
+	name: string;
 }
-const GroupTypeControl: FC<Props> = ({ setPublic, isPublic }) => {
+const GroupTypeControl: FC<Props> = props => {
+	const [field, meta, helpers] = useField(props);
 	const classes = useStyles();
 	return (
 		<div className={classes.container}>
-			{' '}
 			<ButtonGroup variant='contained' color='primary'>
 				<Button
-					color={isPublic ? 'secondary' : 'primary'}
-					onClick={() => setPublic(true)}
+					color={field.value ? 'secondary' : 'primary'}
+					onClick={() => helpers.setValue(true)}
 				>
 					Public
 				</Button>
 				<Button
-					color={!isPublic ? 'secondary' : 'primary'}
-					onClick={() => setPublic(false)}
+					color={!field.value ? 'secondary' : 'primary'}
+					onClick={() => helpers.setValue(false)}
 				>
 					Private
 				</Button>

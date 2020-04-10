@@ -4,7 +4,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import SettingItem from './SettingItem';
-import { CreateGroupFormValues, settingValues } from '../formInitialValues';
+import { settingValues } from '../formInitialValues';
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -13,11 +13,8 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-interface Props {
-	values: CreateGroupFormValues;
-	setFieldValue(field: string, value: any, shouldValidate?: boolean): void;
-}
-const GroupSettingsControl: FC<Props> = ({ values, setFieldValue }) => {
+interface Props {}
+const GroupSettingsControl: FC<Props> = () => {
 	const classes = useStyles();
 	return (
 		<div className={classes.container}>
@@ -26,13 +23,11 @@ const GroupSettingsControl: FC<Props> = ({ values, setFieldValue }) => {
 				<FormGroup>
 					{settingValues.map(setting => (
 						<SettingItem
+							key={setting.key}
 							title={setting.title}
 							explanationTitle={setting.explanationTitle}
 							explanation={setting.explanation}
-							value={values[setting.key]}
-							setValue={(newVal: boolean) => {
-								setFieldValue(setting.key, newVal);
-							}}
+							name={setting.key}
 						/>
 					))}
 				</FormGroup>

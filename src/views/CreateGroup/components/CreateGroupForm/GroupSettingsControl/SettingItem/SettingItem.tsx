@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { Typography } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
+import { useField } from 'formik';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	container: {},
@@ -24,28 +25,27 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-	value: boolean;
+	name: string;
 	title: string;
 	explanationTitle: string;
 	explanation: string;
-	setValue: (newValue: boolean) => void;
 }
 const SettingItem: FC<Props> = ({
-	value,
 	title,
 	explanationTitle,
 	explanation,
-	setValue,
+	...props
 }) => {
 	const [expanded, setExpanded] = useState(false);
+	const [field, meta, helpers] = useField(props);
 	const classes = useStyles();
 	return (
 		<div className={classes.container}>
 			<div className={classes.lineContainer}>
 				<Checkbox
-					checked={value}
+					checked={field.value}
 					onChange={() => {
-						setValue(!value);
+						helpers.setValue(!field.value);
 						setExpanded(false);
 					}}
 				/>
