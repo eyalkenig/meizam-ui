@@ -17,13 +17,17 @@ interface Props {
 }
 const GroupTypeControl: FC<Props> = props => {
 	const [field, meta, helpers] = useField(props);
+	const [passwordField, passwordMeta, passwordHelpers] = useField('password');
 	const classes = useStyles();
 	return (
 		<div className={classes.container}>
 			<ButtonGroup variant='contained' color='primary'>
 				<Button
 					color={field.value ? 'secondary' : 'primary'}
-					onClick={() => helpers.setValue(true)}
+					onClick={() => {
+						helpers.setValue(true);
+						passwordHelpers.setError(null);
+					}}
 				>
 					Public
 				</Button>

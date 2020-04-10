@@ -12,15 +12,15 @@ function groupTable(req, res) {
 	if (groupId === 666) {
 		response = {
 			status: 'error',
-			error: 'must be logged in'
+			error: 'must be logged in',
 		};
 	} else {
 		response = {
 			status: 'ok',
 			response: {
 				ID: req.query.groupId,
-				...tableMock.getTable(groupId)
-			}
+				...tableMock.getTable(groupId),
+			},
 		};
 	}
 	console.log('[OK] 200');
@@ -49,8 +49,8 @@ function groupPrediction(req, res) {
 				...prediction.table,
 				...prediction.view,
 				...prediction.groupStage,
-				...prediction.knockoutStage
-			}
+				...prediction.knockoutStage,
+			},
 		};
 	}
 	console.log('[OK] 200');
@@ -60,7 +60,16 @@ function groupPrediction(req, res) {
 	console.log();
 }
 
+function createGroup(req, res) {
+	console.log(req.body.groupName);
+	let status = 200;
+	let response = { id: '15555', status: 'ok' };
+	// Push to the group list
+	res.status(status).send(response);
+}
+
 module.exports = {
 	groupTable,
-	groupPrediction
+	groupPrediction,
+	createGroup,
 };

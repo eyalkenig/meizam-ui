@@ -70,6 +70,7 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 				isSubmitting,
 				handleSubmit,
 			}) => {
+				console.log(errors);
 				return (
 					<Fade in timeout={500}>
 						<Card elevation={4} className={classes.card}>
