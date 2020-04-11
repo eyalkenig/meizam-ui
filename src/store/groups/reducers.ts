@@ -10,9 +10,10 @@ import {
 	CREATE_GROUP,
 	CREATE_GROUP_SUCCESS,
 	CREATE_GROUP_FAILURE,
+	RESET_CREATE_GROUP_STATE,
 } from './types';
 
-const initialState: GroupsState = {
+const groupInitialState: GroupsState = {
 	groups: [],
 	tableView: {
 		selectedGroupId: 0,
@@ -24,7 +25,7 @@ const initialState: GroupsState = {
 };
 
 export function groupReducer(
-	state = initialState,
+	state = groupInitialState,
 	action: GroupsActionTypes
 ): GroupsState {
 	switch (action.type) {
@@ -69,6 +70,7 @@ const createGroupInitialState: CreateGroupState = {
 	submitted: false,
 	submitting: false,
 	hasError: false,
+	groupId: '',
 };
 
 export function createGroupReducer(
@@ -87,6 +89,7 @@ export function createGroupReducer(
 				...state,
 				submitting: false,
 				submitted: true,
+				groupId: action.payload,
 			};
 
 		case CREATE_GROUP_FAILURE:
@@ -94,6 +97,11 @@ export function createGroupReducer(
 				...state,
 				submitting: false,
 				hasError: true,
+			};
+
+		case RESET_CREATE_GROUP_STATE:
+			return {
+				...createGroupInitialState,
 			};
 
 		default:

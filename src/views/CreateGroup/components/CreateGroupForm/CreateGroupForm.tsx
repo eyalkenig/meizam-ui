@@ -51,6 +51,14 @@ interface Props {
 }
 const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 	const classes = useStyles();
+
+	const handleImageSelection = (e: any) => {
+		// dispatch to saga and handle transform to base64 as a sideeffect.
+		console.log();
+		const fr = new FileReader();
+		const photo = fr.readAsDataURL(e.target.files[0]);
+		console.log(photo);
+	};
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -70,7 +78,7 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 				isSubmitting,
 				handleSubmit,
 			}) => {
-				console.log(errors);
+				console.log(values);
 				return (
 					<Fade in timeout={500}>
 						<Card elevation={4} className={classes.card}>
@@ -117,10 +125,20 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 										md={7}
 									>
 										Choose group image TBD
+										<input
+											type='file'
+											name='myImage'
+											accept='image/x-png,image/gif,image/jpeg'
+											onChange={handleImageSelection}
+										/>
 										<img
 											className={classes.groupImage}
 											alt='Logo'
-											src='/images/logos/meizam-euro2020.svg'
+											src={
+												values.uploadedImage
+													? values.uploadedImage
+													: '/images/logos/meizam-euro2020.svg'
+											}
 										/>
 									</Grid>
 								</Grid>

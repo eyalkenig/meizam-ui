@@ -7,6 +7,7 @@ import {
 	CREATE_GROUP,
 	CREATE_GROUP_SUCCESS,
 	CREATE_GROUP_FAILURE,
+	RESET_CREATE_GROUP_STATE,
 } from './types';
 
 export function fetchGroupTable(groupId: number): GroupsActionTypes {
@@ -30,8 +31,11 @@ export const createGroup = (
 	payload,
 });
 
-export const createGroupSuccess = (): CreateGroupActionTypes => ({
+export const createGroupSuccess = (
+	groupId: string
+): CreateGroupActionTypes => ({
 	type: CREATE_GROUP_SUCCESS,
+	payload: groupId,
 });
 
 export const createGroupFailure = (
@@ -39,4 +43,8 @@ export const createGroupFailure = (
 ): CreateGroupActionTypes => ({
 	type: CREATE_GROUP_FAILURE,
 	payload,
+});
+
+export const resetCreateGroupState = () => ({
+	type: RESET_CREATE_GROUP_STATE,
 });

@@ -8,5 +8,11 @@ export const groupTableViewSelector = (state: RootState) =>
 
 export const groupTableFilteredViewSelector = (state: RootState) =>
 	groupTableViewSelector(state).table.filter((row: TableRow) => {
-		return row.name.toLowerCase().indexOf(groupsSelector(state).searchText.toLowerCase()) >= 0
-	})
+		return (
+			row.name
+				.toLowerCase()
+				.indexOf(groupsSelector(state).searchText.toLowerCase()) >= 0
+		);
+	});
+
+export const createGroupSelector = (state: RootState) => state.createGroup;

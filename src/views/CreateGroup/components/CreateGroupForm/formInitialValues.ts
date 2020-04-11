@@ -5,6 +5,7 @@ export const initialValues = {
 	createMonkey: true,
 	allowGamePredictions: true,
 	twoBeatsMode: true,
+	uploadedImage: '',
 };
 
 interface SettingValue {
@@ -35,7 +36,7 @@ export const settingValues: SettingValue[] = [
 		explanationTitle:
 			'During the groups stage the members can change their playoff predictions',
 		explanation:
-			'If you choose this options the members in your group will have the option to change their predictions during the groups stage (untill the final eighth)',
+			'If you choose this options the members in your group will have the option to change their predictions during the groups stage (untill the final eight).',
 		key: 'twoBeatsMode',
 	},
 ];

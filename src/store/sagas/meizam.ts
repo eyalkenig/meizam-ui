@@ -55,8 +55,8 @@ export function* CreateGroupSaga(action: CreateGroupAction) {
 		managerId: id,
 	};
 	try {
-		yield call(MeizamApi.CreateGroup, body);
-		yield put(createGroupSuccess());
+		const res = yield call(MeizamApi.CreateGroup, body);
+		yield put(createGroupSuccess(res.id));
 	} catch (error) {
 		console.log(error.message);
 		yield put(createGroupFailure(error));

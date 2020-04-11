@@ -5,6 +5,7 @@ export const SEARCH_GROUP_TABLE = 'SEARCH_GROUP_TABLE';
 export const CREATE_GROUP = 'CREATE_GROUP';
 export const CREATE_GROUP_SUCCESS = 'CREATE_GROUP_SUCCESS';
 export const CREATE_GROUP_FAILURE = 'CREATE_GROUP_FAILURE';
+export const RESET_CREATE_GROUP_STATE = 'RESET_CREATE_GROUP_STATE';
 
 export interface FetchGroupTableAction {
 	type: typeof FETCH_GROUP_TABLE;
@@ -30,10 +31,16 @@ export interface CreateGroupAction {
 
 export interface CreateGroupSuccessAction {
 	type: typeof CREATE_GROUP_SUCCESS;
+	payload: string;
 }
 
 export interface CreateGroupFailureAction {
 	type: typeof CREATE_GROUP_FAILURE;
+	payload: string;
+}
+
+export interface resetCreateGroupAction {
+	type: typeof RESET_CREATE_GROUP_STATE;
 	payload: string;
 }
 
@@ -46,7 +53,8 @@ export type GroupsActionTypes =
 export type CreateGroupActionTypes =
 	| CreateGroupAction
 	| CreateGroupSuccessAction
-	| CreateGroupFailureAction;
+	| CreateGroupFailureAction
+	| resetCreateGroupAction;
 
 export type TournamentType = 'euro' | 'mondial';
 
@@ -99,4 +107,5 @@ export interface CreateGroupState {
 	submitted: boolean;
 	submitting: boolean;
 	hasError: boolean;
+	groupId: string;
 }
