@@ -90,7 +90,6 @@ export default class MeizamApi {
 	static async CreateGroup(body: CreateGroupBody) {
 		const response = await axiosWrapper.post('/Group/CreateGroup', body);
 		if (response.data.status !== 'ok') {
-			console.log(response.data);
 			throw new Error(response.data.error);
 		}
 

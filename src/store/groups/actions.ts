@@ -1,5 +1,6 @@
 import {
 	GroupsActionTypes,
+	CreateGroupActionTypes,
 	FETCH_GROUP_TABLE,
 	SEARCH_GROUP_TABLE,
 	CreateGroupBody,
@@ -22,15 +23,20 @@ export function searchGroupTable(payload: string): GroupsActionTypes {
 	};
 }
 
-export const createGroup = (payload: CreateGroupBody): GroupsActionTypes => ({
+export const createGroup = (
+	payload: CreateGroupBody
+): CreateGroupActionTypes => ({
 	type: CREATE_GROUP,
 	payload,
 });
 
-export const createGroupSuccess = (): GroupsActionTypes => ({
+export const createGroupSuccess = (): CreateGroupActionTypes => ({
 	type: CREATE_GROUP_SUCCESS,
 });
 
-export const createGroupFailure = (): GroupsActionTypes => ({
+export const createGroupFailure = (
+	payload: string
+): CreateGroupActionTypes => ({
 	type: CREATE_GROUP_FAILURE,
+	payload,
 });

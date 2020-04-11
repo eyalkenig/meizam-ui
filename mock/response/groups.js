@@ -60,16 +60,25 @@ function groupPrediction(req, res) {
 	console.log();
 }
 
-function createGroup(req, res) {
-	console.log(req.body.groupName);
+function create(req, res) {
+	console.log('[POST] /Group/CreateGroup');
+	console.log('params:');
+	console.log(req.body);
 	let status = 200;
-	let response = { id: '15555', status: 'ok' };
-	// Push to the group list
-	res.status(status).send(response);
+	let response = {};
+	if (req.body.groupName === 'error') {
+		status = 404;
+		response = { error: 'Something weng wrong please try again.' };
+	} else {
+		response = { id: '266', status: 'ok' };
+	}
+	setTimeout(() => {
+		res.status(status).send(response);
+	}, 1500);
 }
 
 module.exports = {
 	groupTable,
 	groupPrediction,
-	createGroup,
+	create,
 };

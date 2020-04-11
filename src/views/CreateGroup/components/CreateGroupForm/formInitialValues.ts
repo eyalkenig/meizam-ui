@@ -4,13 +4,14 @@ export const initialValues = {
 	password: '',
 	createMonkey: true,
 	allowGamePredictions: true,
+	twoBeatsMode: true,
 };
 
 interface SettingValue {
 	title: string;
 	explanationTitle: string;
 	explanation: string;
-	key: 'createMonkey' | 'allowGamePredictions';
+	key: 'createMonkey' | 'allowGamePredictions' | 'twoBeatsMode';
 }
 
 export const settingValues: SettingValue[] = [
@@ -28,6 +29,14 @@ export const settingValues: SettingValue[] = [
 		explanation:
 			'If you choose this options group members will have the option to predict single game results. The members can update their predictions untill the game kick-off.',
 		key: 'allowGamePredictions',
+	},
+	{
+		title: 'Two beats mode ',
+		explanationTitle:
+			'During the groups stage the members can change their playoff predictions',
+		explanation:
+			'If you choose this options the members in your group will have the option to change their predictions during the groups stage (untill the final eighth)',
+		key: 'twoBeatsMode',
 	},
 ];
 

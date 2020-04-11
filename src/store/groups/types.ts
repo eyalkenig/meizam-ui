@@ -34,13 +34,16 @@ export interface CreateGroupSuccessAction {
 
 export interface CreateGroupFailureAction {
 	type: typeof CREATE_GROUP_FAILURE;
+	payload: string;
 }
 
 export type GroupsActionTypes =
 	| FetchGroupTableAction
 	| FetchGroupTableSuccessAction
 	| FetchGroupTableFailureAction
-	| SearchGroupTableAction
+	| SearchGroupTableAction;
+
+export type CreateGroupActionTypes =
 	| CreateGroupAction
 	| CreateGroupSuccessAction
 	| CreateGroupFailureAction;
@@ -74,6 +77,16 @@ export interface TableView {
 	table: TableRow[];
 }
 
+export interface CreateGroupBody {
+	managerId?: string;
+	groupName: string;
+	isPublic: boolean;
+	password?: string;
+	createMonkey: boolean;
+	allowGamePredictions: boolean;
+	twoBeatsMode: boolean;
+}
+
 export interface GroupsState {
 	groups: Group[];
 	tableView: TableView;
@@ -82,10 +95,8 @@ export interface GroupsState {
 	hasFetchingError: boolean;
 }
 
-export interface CreateGroupBody {
-	groupName: string;
-	isPublic: boolean;
-	password?: string;
-	createMonkey: boolean;
-	allowGamePredictions: boolean;
+export interface CreateGroupState {
+	submitted: boolean;
+	submitting: boolean;
+	hasError: boolean;
 }

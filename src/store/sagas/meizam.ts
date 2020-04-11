@@ -1,5 +1,7 @@
 import { MeizamApi } from '../../services';
-import { call, put } from '@redux-saga/core/effects';
+import { call, put, select } from '@redux-saga/core/effects';
+import { createGroupSuccess, createGroupFailure } from '../groups/actions';
+import { userSelector } from '../selectors/user';
 import {
 	FETCH_USER_INFO_FAILURE,
 	FETCH_USER_INFO_SUCCESS,
@@ -47,7 +49,16 @@ export function* FetchPrediction(action: FetchPredictionAction) {
 }
 
 export function* CreateGroupSaga(action: CreateGroupAction) {
+	const { id } = yield select(userSelector);
+	const body = {
+		...action.payload,
+		managerId: id,
+	};
 	try {
-		yield call(MeizamApi.CreateGroup, action.payload);
-	} catch (error) {}
+		yield call(MeizamApi.CreateGroup, body);
+		yield put(createGroupSuccess());
+	} catch (error) {
+		console.log(error.message);
+		yield put(createGroupFailure(error));
+	}
 }
