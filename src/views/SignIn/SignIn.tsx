@@ -26,7 +26,7 @@ const schema = {
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: theme.palette.background.paper,
 		height: '100%'
 	},
 	grid: {
@@ -139,6 +139,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	signInButton: {
 		margin: theme.spacing(2, 0)
+	},
+	signUp: {
+		position: 'relative'
 	}
 }));
 
@@ -252,7 +255,7 @@ const SignIn: FC = () => {
 								>
 									Sign in now
 								</Button>
-								<Typography color='textSecondary' variant='body1'>
+								<Typography color='textSecondary' variant='body1' className={classes.signUp}>
 									Don't have an account?{' '}
 									<Link component={RouterLink} to='/sign-up' variant='h6'>
 										Sign up
