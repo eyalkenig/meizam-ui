@@ -9,7 +9,8 @@ import {
   NotFound as NotFoundView,
   GroupTable as GroupTableView,
   UserPrediction as UserPredictionView,
-  SignIn as SignInView
+  SignIn as SignInView,
+  SignUp as SignUpView
 } from './views';
 
 const Routes = () => {
@@ -49,6 +50,11 @@ const Routes = () => {
         component={SignInView}
         layout={MinimalLayout}
         path="/sign-in"
+      />
+      <RouteWithLayout
+        component={SignUpView}
+        layout={MinimalLayout}
+        path="/sign-up"
       />
       <Redirect to="/not-found" />
     </Switch>
