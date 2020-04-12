@@ -9,6 +9,7 @@ import { fetchPrediction } from '../../store/predictions/actions';
 import { RouterMatch } from '../../types/interfaces';
 import GroupsPredictionSection from './components/GroupsPredictionSection';
 import KnockoutPredictionSection from './components/KnockoutPredictionSection';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -17,9 +18,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   alignCenter: {
     textAlign: 'center'
   },
-  tryAgain: {
-    marginTop: '25px'
-  }
 }));
 interface Props {
   match: RouterMatch
@@ -52,12 +50,9 @@ const UserPredictionContainer: FC<Props> = props => {
           </div>
           :
           predictionView.hasFetchingError ?
-          <div className={classes.alignCenter}>
-            <Typography>Oops.... Something went wrong</Typography>
-            <Button className={classes.tryAgain} variant="outlined" color="secondary" onClick={() => {dispatch(fetchPrediction(predictionId))}}>
-              Try Again
-            </Button>
-          </div>
+          <ErrorMessage errorMessage="Oops.... Something went wrong"
+                        showTryAgain={true}
+                        onTryAgain={() => dispatch(fetchPrediction(predictionId))}/>
           :
           <div>
             {predictionView.prediction.metadata &&
