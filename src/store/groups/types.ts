@@ -90,6 +90,7 @@ export interface CreateGroupBody {
 	groupName: string;
 	isPublic: boolean;
 	password?: string;
+	groupAvatar?: string;
 	createMonkey: boolean;
 	allowGamePredictions: boolean;
 	twoBeatsMode: boolean;

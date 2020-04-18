@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import TextField from '@material-ui/core/TextField';
-import { Theme, Grid } from '@material-ui/core';
+import { Theme, Grid, Typography } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
@@ -36,35 +36,53 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	groupImageContainer: {
 		display: 'flex',
+		flex: 1,
 		flexDirection: 'column',
-		justifyContent: 'center',
+		justifyContent: 'space-around',
 		alignItems: 'center',
 	},
 	groupImage: {
-		width: '350px',
-		height: '350px',
+		height: 200,
+		width: 200,
+		borderRadius: '50%',
+		objectFit: 'cover',
+	},
+	uploadImage: {
+		marginTop: theme.spacing(4),
+		marginBottom: theme.spacing(4),
+
+		background: theme.palette.primary.main,
+		padding: theme.spacing(1),
+		color: 'white',
+		borderRadius: 4,
+		cursor: 'pointer',
 	},
 }));
 
 interface Props {
-	submitForm: (body: CreateGroupFormValues) => void;
+	submitForm: (body: CreateGroupFormValues, groupAvatar: string) => void;
 }
 const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 	const classes = useStyles();
+	const [groupImage, setGroupImage] = useState('');
 
-	const handleImageSelection = (e: any) => {
-		// dispatch to saga and handle transform to base64 as a sideeffect.
-		console.log();
-		const fr = new FileReader();
-		const photo = fr.readAsDataURL(e.target.files[0]);
-		console.log(photo);
+	const handleImageSelection = async (e: any) => {
+		const file = e.target.files[0];
+		if (file) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				const b64 = reader.result;
+				if (typeof b64 === 'string') setGroupImage(b64);
+			};
+			reader.readAsDataURL(file);
+		}
 	};
 	return (
 		<Formik
 			initialValues={initialValues}
 			onSubmit={(values, actions) => {
 				actions.setSubmitting(true);
-				submitForm(values);
+				submitForm(values, groupImage);
 			}}
 			validationSchema={validationSchema}
 			validateOnMount
@@ -78,7 +96,6 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 				isSubmitting,
 				handleSubmit,
 			}) => {
-				console.log(values);
 				return (
 					<Fade in timeout={500}>
 						<Card elevation={4} className={classes.card}>
@@ -89,11 +106,12 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 										item
 										xs={12}
 										sm={12}
-										md={5}
+										md={6}
 									>
 										<TextField
 											error={!!(touched.groupName && errors.groupName)}
 											label='Group Name'
+											data-cy='group-name-input'
 											helperText={
 												(touched.groupName && errors.groupName) ||
 												'Group name is public'
@@ -113,6 +131,7 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 											variant='contained'
 											color='primary'
 											endIcon={<GroupRoundedIcon />}
+											data-cy='create-group-button'
 										>
 											Create Group
 										</Button>
@@ -122,22 +141,26 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 										item
 										xs={12}
 										sm={12}
-										md={7}
+										md={6}
 									>
-										Choose group image TBD
+										<Typography variant='h2'>Add your group avatar</Typography>
 										<input
+											id='files'
+											style={{ display: 'none' }}
 											type='file'
-											name='myImage'
 											accept='image/x-png,image/gif,image/jpeg'
 											onChange={handleImageSelection}
 										/>
+										<label htmlFor='files'>
+											<Typography className={classes.uploadImage}>
+												Upload
+											</Typography>
+										</label>
 										<img
 											className={classes.groupImage}
 											alt='Logo'
 											src={
-												values.uploadedImage
-													? values.uploadedImage
-													: '/images/logos/meizam-euro2020.svg'
+												groupImage ? groupImage : '/images/logos/group-logo.png'
 											}
 										/>
 									</Grid>

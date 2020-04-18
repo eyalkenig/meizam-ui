@@ -42,12 +42,15 @@ const CreateGroup: FC = () => {
 		};
 	}, [submitted, history]);
 
-	const submitForm = (body: CreateGroupBody) => {
+	const submitForm = (body: CreateGroupBody, groupAvatar: string) => {
+		if (groupAvatar) {
+			body.groupAvatar = groupAvatar;
+		}
 		dispatch(createGroup(body));
 	};
 
 	return (
-		<div className={classes.root}>
+		<div className={classes.root} data-cy='create-group-container'>
 			<Header />
 
 			{hasError ? (
