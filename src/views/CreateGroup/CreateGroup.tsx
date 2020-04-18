@@ -11,6 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useSelector from '../../hooks/useSelector';
 import { createGroupSelector } from '../../store/selectors/groups';
 import { useHistory } from 'react-router-dom';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -54,9 +55,10 @@ const CreateGroup: FC = () => {
 			<Header />
 
 			{hasError ? (
-				<Typography className={classes.errorMessage}>
-					Something went wrong... please try again
-				</Typography>
+				<ErrorMessage
+					errorMessage='Something went wrong, please try again'
+					showTryAgain={false}
+				/>
 			) : submitting ? (
 				<CircularProgress className={classes.spinner} />
 			) : (
