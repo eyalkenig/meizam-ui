@@ -46,4 +46,12 @@ describe('GroupTable test', function() {
         cy.get('[data-cy="table-row"]')
             .should('have.length', 4)
     })
+    it('should show no user found message', function() {
+        cy.visit('/table/12')
+
+        cy.get('[data-cy="search-user"] [data-cy="search-input"]').click().type('aooo')
+
+        cy.get('[data-cy="error-message"]')
+        .should('contain', 'Oops... no matching users')
+    })
 })
