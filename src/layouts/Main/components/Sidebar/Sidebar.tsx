@@ -5,9 +5,10 @@ import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer, Theme } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TableChartIcon from '@material-ui/icons/TableChart';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Profile, SidebarNav } from './components';
 import useSelector from '../../../../hooks/useSelector';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { userSelector } from '../../../../store/selectors/user';
 import { PlainFunction, Page } from '../../../../types/interfaces';
 
@@ -16,22 +17,22 @@ const useStyles = makeStyles((theme: Theme) => ({
 		width: 240,
 		[theme.breakpoints.up('lg')]: {
 			marginTop: 64,
-			height: 'calc(100% - 64px)'
-		}
+			height: 'calc(100% - 64px)',
+		},
 	},
 	root: {
 		backgroundColor: theme.palette.common.white,
 		display: 'flex',
 		flexDirection: 'column',
 		height: '100%',
-		padding: theme.spacing(2)
+		padding: theme.spacing(2),
 	},
 	divider: {
-		margin: theme.spacing(2, 0)
+		margin: theme.spacing(2, 0),
 	},
 	nav: {
-		marginBottom: theme.spacing(2)
-	}
+		marginBottom: theme.spacing(2),
+	},
 }));
 
 interface Props {
@@ -51,19 +52,25 @@ const Sidebar: FC<Props> = props => {
 		{
 			title: 'Feed',
 			href: '/feed',
-			icon: <DashboardIcon />
+			icon: <DashboardIcon />,
 		},
 		{
 			title: 'Group Table',
 			href: '/table',
-			icon: <TableChartIcon />
+			icon: <TableChartIcon />,
 		},
+		{
+			title: 'Create Group',
+			href: '/group/create',
+			icon: <AddBoxIcon />,
+		},
+
 		{
 			title: 'Go to old site',
 			href: 'http://www.meizam.club',
 			absolutePath: true,
-			icon: <ExitToAppIcon />
-		}
+			icon: <ExitToAppIcon />,
+		},
 	];
 
 	return (
