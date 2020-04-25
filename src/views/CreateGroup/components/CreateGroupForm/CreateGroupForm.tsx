@@ -72,7 +72,9 @@ const CreateGroupForm: FC<Props> = ({ submitForm }) => {
 			const reader = new FileReader();
 			reader.onloadend = () => {
 				const b64 = reader.result;
-				if (typeof b64 === 'string') setGroupImage(b64);
+				if (typeof b64 === 'string') {
+					setGroupImage(b64);
+				}
 			};
 			reader.readAsDataURL(file);
 		}

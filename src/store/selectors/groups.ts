@@ -15,4 +15,4 @@ export const groupTableFilteredViewSelector = (state: RootState) =>
 		);
 	});
 
-export const createGroupSelector = (state: RootState) => state.createGroup;
+export const createGroupSelector = (state: RootState) => state.groups;

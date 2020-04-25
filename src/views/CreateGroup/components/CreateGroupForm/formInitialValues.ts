@@ -19,24 +19,24 @@ export const settingValues: SettingValue[] = [
 	{
 		title: 'Create monkey prediction',
 		explanationTitle:
-			'Will add a "monkey" member into your group with a random predictions',
+			'Will add a "monkey" member into your group with a random prediction',
 		explanation:
-			'The monkey will compete with you and your group members during the tournament and you can remove him through the group panel.',
+			'The monkey will compete as a regular member of your group. You can remove it anytime through the group admin panel.',
 		key: 'createMonkey',
 	},
 	{
 		title: 'Allow single game predictions',
 		explanationTitle: 'Group members can predict game results ',
 		explanation:
-			'If you choose this options group members will have the option to predict single game results. The members can update their predictions untill the game kick-off.',
+			'Group members will have the option to predict single-game results. Predictions can be updated until the game starts.',
 		key: 'allowGamePredictions',
 	},
 	{
 		title: 'Two beats mode ',
 		explanationTitle:
-			'During the groups stage the members can change their playoff predictions',
+			'Members can update their playoff predictions until the playoff starts',
 		explanation:
-			'If you choose this options the members in your group will have the option to change their predictions during the groups stage (untill the final eight).',
+			'Disabling this option means that once the tournament starts - no updates are allowed.',
 		key: 'twoBeatsMode',
 	},
 ];

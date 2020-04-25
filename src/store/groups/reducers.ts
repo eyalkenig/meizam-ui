@@ -1,8 +1,6 @@
 import {
 	GroupsState,
-	CreateGroupState,
 	GroupsActionTypes,
-	CreateGroupActionTypes,
 	FETCH_GROUP_TABLE_SUCCESS,
 	FETCH_GROUP_TABLE,
 	SEARCH_GROUP_TABLE,
@@ -22,6 +20,10 @@ const groupInitialState: GroupsState = {
 	fetching: false,
 	hasFetchingError: false,
 	searchText: '',
+	submitted: false,
+	submitting: false,
+	hasError: false,
+	createdGroupId: '',
 };
 
 export function groupReducer(
@@ -61,23 +63,7 @@ export function groupReducer(
 				searchText: action.payload,
 				hasFetchingError: false,
 			};
-		default:
-			return state;
-	}
-}
 
-const createGroupInitialState: CreateGroupState = {
-	submitted: false,
-	submitting: false,
-	hasError: false,
-	groupId: '',
-};
-
-export function createGroupReducer(
-	state = createGroupInitialState,
-	action: CreateGroupActionTypes
-) {
-	switch (action.type) {
 		case CREATE_GROUP:
 			return {
 				...state,
@@ -89,7 +75,7 @@ export function createGroupReducer(
 				...state,
 				submitting: false,
 				submitted: true,
-				groupId: action.payload,
+				createdGroupId: action.payload,
 			};
 
 		case CREATE_GROUP_FAILURE:
@@ -101,9 +87,11 @@ export function createGroupReducer(
 
 		case RESET_CREATE_GROUP_STATE:
 			return {
-				...createGroupInitialState,
+				...state,
+				submitted: false,
+				submitting: false,
+				hasError: false,
 			};
-
 		default:
 			return state;
 	}

@@ -48,9 +48,7 @@ export type GroupsActionTypes =
 	| FetchGroupTableAction
 	| FetchGroupTableSuccessAction
 	| FetchGroupTableFailureAction
-	| SearchGroupTableAction;
-
-export type CreateGroupActionTypes =
+	| SearchGroupTableAction
 	| CreateGroupAction
 	| CreateGroupSuccessAction
 	| CreateGroupFailureAction
@@ -102,11 +100,8 @@ export interface GroupsState {
 	searchText: string;
 	fetching: boolean;
 	hasFetchingError: boolean;
-}
-
-export interface CreateGroupState {
 	submitted: boolean;
 	submitting: boolean;
 	hasError: boolean;
-	groupId: string;
+	createdGroupId: string;
 }

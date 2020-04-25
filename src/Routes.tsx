@@ -37,7 +37,7 @@ const Routes = () => {
 			<RouteWithLayout
 				component={CreateGroupView}
 				layout={MainLayout}
-				path='/create-group'
+				path='/group/create'
 			/>
 			<RouteWithLayout
 				component={NotFoundView}

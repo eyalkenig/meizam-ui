@@ -3,13 +3,12 @@ import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
 import { rootSaga } from './sagas';
 import { userReducer } from './user/reducers';
-import { groupReducer, createGroupReducer } from './groups/reducers';
+import { groupReducer } from './groups/reducers';
 import { predictionsReducer } from './predictions/reducers';
 
 export const rootReducer = combineReducers({
 	user: userReducer,
 	groups: groupReducer,
-	createGroup: createGroupReducer,
 	prediction: predictionsReducer,
 });
 

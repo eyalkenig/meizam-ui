@@ -56,9 +56,7 @@ const PasswordInput: FC<Props> = ({ label, ...props }) => {
 					}
 					labelWidth={70}
 				/>
-				<FormHelperText id='outlined-weight-helper-text'>
-					{meta.touched && meta.error}
-				</FormHelperText>
+				<FormHelperText>{meta.touched && meta.error}</FormHelperText>
 			</FormControl>
 		</div>
 	);

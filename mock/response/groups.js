@@ -74,7 +74,7 @@ function create(req, res) {
 	}
 	setTimeout(() => {
 		res.status(status).send(response);
-	}, 1500);
+	}, 0);
 }
 
 module.exports = {

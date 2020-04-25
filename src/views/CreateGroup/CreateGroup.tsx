@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
-import { Theme, Typography } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
 import { Header } from './components';
 import CreateGroupForm from './components/CreateGroupForm';
 import { CreateGroupBody } from '../../store/groups/types';
@@ -36,12 +36,11 @@ const CreateGroup: FC = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		// Remove redirection after group onboarding is created
 		submitted && history.push('/Feed');
 		return () => {
 			dispatch(resetCreateGroupState());
 		};
-	}, [submitted, history]);
+	}, [submitted, history, dispatch]);
 
 	const submitForm = (body: CreateGroupBody, groupAvatar: string) => {
 		if (groupAvatar) {
