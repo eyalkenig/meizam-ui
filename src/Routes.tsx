@@ -36,7 +36,7 @@ const Routes = () => {
 			/>
 			<RouteWithLayout
 				component={CreateGroupView}
-				layout={MinimalLayout}
+				layout={MainLayout}
 				path='/group/create'
 			/>
 
