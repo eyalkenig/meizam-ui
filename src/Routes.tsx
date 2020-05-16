@@ -10,7 +10,8 @@ import {
   GroupTable as GroupTableView,
   UserPrediction as UserPredictionView,
   SignIn as SignInView,
-  SignUp as SignUpView
+  SignUp as SignUpView,
+  CreateGroup as CreateGroupView
 } from './views';
 
 const Routes = () => {
@@ -40,6 +41,11 @@ const Routes = () => {
         component={UserPredictionView}
         layout={MainLayout}
         path="/prediction/:predictionId"
+      />
+      <RouteWithLayout
+        component={CreateGroupView}
+        layout={MainLayout}
+        path="/group/create"
       />
       <RouteWithLayout
         component={NotFoundView}

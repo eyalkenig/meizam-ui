@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer, Theme } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TableChartIcon from '@material-ui/icons/TableChart';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Profile, SidebarNav } from './components';
 import useSelector from '../../../../hooks/useSelector';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -57,6 +58,11 @@ const Sidebar: FC<Props> = props => {
 			title: 'Group Table',
 			href: '/table',
 			icon: <TableChartIcon />
+		},
+		{
+			title: 'Create Group',
+			href: '/group/create',
+			icon: <AddBoxIcon />
 		},
 		{
 			title: 'Go to old site',
