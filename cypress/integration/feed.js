@@ -22,7 +22,7 @@ describe('Feed test', function() {
         .find('[data-cy="table-row"]')
         .should('have.length', 4)
     })
-    it('should show group name and position', function() {
+    it('should show group name and position on desktop', function() {
         cy.visit('/feed')
 
         cy.get('[data-cy="feed-group"]')
@@ -35,7 +35,30 @@ describe('Feed test', function() {
         .should('contain', 'המיזם')
         .should('contain', '6')
     })
-    it('should open table of group after clicking the group name', function() {
+    it('should show group name and position on mobile', function() {
+        cy.viewport('iphone-x')
+        cy.visit('/feed')
+
+        cy.get('[data-cy="feed-group"]')
+          .eq(0)
+          .should('contain', 'Yotpo')
+          .should('contain', '1')
+
+        cy.get('[data-cy="feed-group"]')
+        .eq(1)
+        .should('contain', 'המיזם')
+        .should('contain', '6')
+    })
+    it('should open table of group after clicking the group name on desktop', function() {
+        cy.visit('/feed')
+
+        cy.contains('Yotpo').click()
+
+        cy.url().should('include', '/table/12')
+        cy.contains('Yotpo')
+    })
+    it('should open table of group after clicking the group name on mobile', function() {
+        cy.viewport('iphone-x')
         cy.visit('/feed')
 
         cy.contains('Yotpo').click()
